@@ -2,7 +2,7 @@
   "name": "eslint-config-volebo",
   "version": "3.0.4",
   "description": "ESLint rules for volebo.net",
-  "license": "MIT",
+  "license": "SEE LICENSE IN LICENSE",
   "private": false,
   "publishConfig": {
     "access": "public"

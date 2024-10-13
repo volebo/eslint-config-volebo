@@ -9,8 +9,8 @@
 #                                                                              #
 ################################################################################
 #
-# Copyright (C) 2016-2020 Volebo <dev@volebo.net>
-# Copyright (C) 2016-2020 Maksim Koryukov <maxkoryukov@volebo.net>
+# Copyright (C) 2016-2024 Volebo <dev@volebo.net>
+# Copyright (C) 2016-2024 Maksim Koryukov <maxkoryukov@volebo.net>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the MIT License, attached to this software package.
@@ -22,8 +22,6 @@
 # You should have received a copy of the MIT License along with this
 # program. If not, see <https://opensource.org/licenses/MIT>.
 #
-# http://spdx.org/licenses/MIT
-#
 ################################################################################
 
 # =========================================
@@ -31,7 +29,6 @@
 # =========================================
 
 # place per-project settings here
-/tests/*
 
 # =========================================
 # common part
@@ -69,8 +66,9 @@ testem.log
 
 .github/
 .gitlab/
-test/
 .serverless/
+test/
+tests/
 CONTRIBUTING.md
 CHANGELOG.md
 HEADER
@@ -80,14 +78,22 @@ HEADER
 .editorconfig
 .eslintignore
 .eslintrc.js
+.eslint.config.mjs
+.eslint.config.js
+.git
 .gitignore
 .gitlab-ci.yml
-.mocharc.js
+.mocharc.*js
 .node-inspectorrc
+.nyc.config.*js
 .travis.yml
+CHANGELOG.md
+CONTRIBUTING.md
 babel.config.js
+HEADER
 capacitor.config.json
 cypress.json
+eslint.config.*js
 gulpfile.js
-nyc.config.js
+nyc.config.*js
 vue.config.js
