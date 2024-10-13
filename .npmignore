@@ -62,16 +62,20 @@ npm-debug.log*
 *.log
 testem.log
 
+# ----------
+# test files
+# ----------
+
+test/
+tests/
+**/*.spec.?js
+**/*.test.?js
+
 # =========================================
 
 .github/
 .gitlab/
 .serverless/
-test/
-tests/
-CONTRIBUTING.md
-CHANGELOG.md
-HEADER
 .browserslistrc
 .bithoundrc
 .codeclimate.yml
@@ -87,10 +91,10 @@ HEADER
 .node-inspectorrc
 .nyc.config.*js
 .travis.yml
-CHANGELOG.md
 CONTRIBUTING.md
-babel.config.js
+CHANGELOG.md
 HEADER
+babel.config.js
 capacitor.config.json
 cypress.json
 eslint.config.*js

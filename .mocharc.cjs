@@ -1,3 +1,4 @@
+/*
 ################################################################################
 #                                                                              #
 # db    db  .8888.  dP     888888b 8888ba   .8888.     d8b   db 888888b d8888P #
@@ -9,8 +10,8 @@
 #                                                                              #
 ################################################################################
 #
-# Copyright (C) 2016-2022 Volebo <dev@volebo.net>
-# Copyright (C) 2016-2022 Maksim Koryukov <maxkoryukov@volebo.net>
+# Copyright (C) 2016-2024 Volebo <dev@volebo.net>
+# Copyright (C) 2016-2024 Maksim Koryukov <maxkoryukov@volebo.net>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the MIT License, attached to this software package.
@@ -22,42 +23,43 @@
 # You should have received a copy of the MIT License along with this
 # program. If not, see <https://opensource.org/licenses/MIT>.
 #
-# http://spdx.org/licenses/MIT
-#
 ################################################################################
+*/
 
 
-os: linux
-dist: focal
-language: node_js
+const MOCHA_TIMEOUT_DEFAULT = Number(process.env.MOCHA_TIMEOUT_DEFAULT || 2000)
+const MOCHA_RETRIES = Number(process.env.MOCHA_RETRIES || 0)
 
-node_js:
-  - 16
-  - 18
-  - stable
 
-cache:
-  directories:
-    - node_modules
+module.exports = {
+	reporter: 'list',
+	// reporter: 'spec',
 
-install:
-  - npm install -g eslint
-  - npm install
+	recursive: true,
+	checkLeaks: true,
+	ui: 'bdd',
+	require: 'tests/bootstrap.mjs',
+	extension: [
+		'test.js',
+		'test.cjs',
+		'test.mjs',
+		'spec.js',
+		'spec.cjs',
+		'spec.mjs',
+	],
+	retries: MOCHA_RETRIES,
 
-script:
-  # - npm run lint
-  - npm test
+	diff: true,
+	package: './package.json',
+	// slow: 75,
+	timeout: MOCHA_TIMEOUT_DEFAULT,
 
-deploy:
-  provider: npm
-  api_token:
-    secure: "m/bU01jXsWzSN+kwecQa2/wMn3Cn9+JthY/MLvLtfeKXkNhDav2ZNgRcY5ksNqf9ypCTRKkqt80nLR+p6/Gl0jlrhhPe3FmADlHT3J7Qifw4iEwSg1w8ksnhDebVwrMf+eMksta01G+iPCab/g0CEWqxyM6eMIxg1QwEMBS2SNnZ/sgNepgX7ZmiUW/B3Sz/J3zrJs9AKre0webiAaJPUlqvFP7SDKIHzG0o2XQjlPty80EltbcZO1UBD+lrlh6QXgZuit5SHfijTdq/n29ybeMTQctMmjDFSP1GjsZ6fXRMSwYtwdLqIh+AaZJgFrzAimbldvACE/SDdIxuDIlMiYYgtlBYdThXtoLOxeN6nP0sY6l6NodiZiZ3zjUpGwaxQnWNvVGSxvVK1ekI7M7EfeBqGPt1E1QKoU8HkKx09Yq4GH052mVBGBsSnAvl7HxTq4fv1RsrIEswvKo0JkObm6My3nWoh87NgIyZJFK5vo6iktTCE/x6D8/AOpGhGLg9CuRa1Ujr/rmxTzkr+Omwh/VY4s1nFIIuXDFsIBhZvU2VzJNMQzB3qhmqL60FOXUXCwQ2CAtm+4/IKZ0Tl9QcggDkCr7DW9TWScOTbFzzgp8q0XgZ5wV73bllGHzIBOyfKSPdKEeKJ6sD0wtGImR6L8xTNvFw8TInusANe6X3JDA="
-  email: dev@volebo.net
-  on:
-    tags: true
-    node_js: stable
-    repo: maxkoryukov/eslint-config-volebo
+	spec: [
+		'tests/**/*.test.js',
+		'tests/**/*.test.mjs',
+		// 'src/**/*.test.js',
+		// 'src/**/*.spec.js',
 
-after_deploy:
-  # Send notification to Slack:
-  - curl -sL https://raw.githubusercontent.com/volebo/dev/master/scripts/im/slack-publish.sh | bash -s -
+		// 'libs/**/*.test.js',
+	],
+}

@@ -10,8 +10,8 @@
 #                                                                              #
 ################################################################################
 #
-# Copyright (C) 2016-2022 Volebo <dev@volebo.net>
-# Copyright (C) 2016-2022 Maksim Koryukov <maxkoryukov@volebo.net>
+# Copyright (C) 2016-2024 Volebo <dev@volebo.net>
+# Copyright (C) 2016-2024 Maksim Koryukov <maxkoryukov@volebo.net>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the MIT License, attached to this software package.
@@ -23,40 +23,10 @@
 # You should have received a copy of the MIT License along with this
 # program. If not, see <https://opensource.org/licenses/MIT>.
 #
-# http://spdx.org/licenses/MIT
-#
 ################################################################################
 */
 
 
-const MOCHA_TIMEOUT_DEFAULT = Number(process.env.MOCHA_TIMEOUT_DEFAULT || 2000)
+import * as chai         from 'chai'
 
-
-module.exports = {
-	reporter: 'list',
-	// reporter: 'spec',
-
-	recursive: true,
-	checkLeaks: true,
-	ui: 'bdd',
-	require: 'tests/bootstrap',
-	extension: [
-		'test.js',
-		'spec.js',
-	],
-	retries: 1,
-
-	diff: true,
-	//opts: './test/mocha.opts',
-	package: './package.json',
-	slow: 75,
-	timeout: MOCHA_TIMEOUT_DEFAULT,
-
-	spec: [
-		'tests/**/*.test.js',
-		// 'src/**/*.test.js',
-		// 'src/**/*.spec.js',
-
-		// 'libs/**/*.test.js',
-	],
-}
+globalThis.expect = chai.expect

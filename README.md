@@ -16,7 +16,7 @@
 [![npm version](https://img.shields.io/npm/v/eslint-config-volebo.svg)](https://www.npmjs.com/package/eslint-config-volebo)
 [![Build Status](https://app.travis-ci.com/maxkoryukov/eslint-config-volebo.svg?branch=master)](https://app.travis-ci.com/maxkoryukov/eslint-config-volebo)
 [![npm downloads](https://img.shields.io/npm/dm/eslint-config-volebo.svg)](https://www.npmjs.com/package/eslint-config-volebo)
-[![Known Vulnerabilities](https://snyk.io/test/github/volebo/eslint-config-volebo/badge.svg)](https://snyk.io/test/github/volebo/eslint-config-volebo)
+[![Known Vulnerabilities](https://snyk.io/test/gitlab/volebo/eslint-config-volebo/badge.svg)](https://snyk.io/test/gitlab/volebo/eslint-config-volebo)
 
 
 Common style guide for all Volebo.Net projects
@@ -24,10 +24,20 @@ Common style guide for all Volebo.Net projects
 ## Install
 
 ```shell
-npm install eslint-config-volebo -S
+npm install eslint eslint-config-volebo -D
 ```
 
 ## Usage
+
+Then paste this to the `eslint.config.js` in the root of your project:
+
+```javascript
+export { default } from 'eslint-config-volebo'
+
+```
+
+
+### Old `eslint` versions
 
 Just paste this to the `.eslintrc.js` in the root of your project:
 
@@ -39,10 +49,10 @@ exports = module.exports = {
 }
 ```
 
-### Old `eslint` versions
+### Very old `eslint` versions
 
 Long time ago `eslint` didn't have such a good support of shared configs, (see
-[this issue](https://github.com/eslint/eslint/issues/3458)), but now it does.
+[this issue](https://gitlab.com/eslint/eslint/issues/3458)), but now it does.
 
 If you are still using the old `eslint` this can help:
 

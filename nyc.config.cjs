@@ -1,3 +1,4 @@
+/*
 ################################################################################
 #                                                                              #
 # db    db  .8888.  dP     888888b 8888ba   .8888.     d8b   db 888888b d8888P #
@@ -9,8 +10,8 @@
 #                                                                              #
 ################################################################################
 #
-# Copyright (C) 2016-2022 Volebo <dev@volebo.net>
-# Copyright (C) 2016-2022 Maksim Koryukov <maxkoryukov@volebo.net>
+# Copyright (C) 2016-2024 Volebo <dev@volebo.net>
+# Copyright (C) 2016-2024 Maksim Koryukov <maxkoryukov@volebo.net>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the MIT License, attached to this software package.
@@ -25,22 +26,41 @@
 # http://spdx.org/licenses/MIT
 #
 ################################################################################
+*/
 
-# =========================================
-# local
-# =========================================
+'use strict'
 
-/tests/samples/*.js
+module.exports = {
+	'all': true,
 
-# =========================================
-# common part
-# =========================================
+	// "sourceMap": false,
+	// "instrument": false,
 
-/node_modules/*
-/bower_components/*
-/dev/
-/coverage/
-/tmp/
-/log/
+	'reporter': [
+		'html',
+		'lcov',
+		'text',
+		'text-summary',
+		// 'json-summary',
+	],
 
+	'require': ['esm'],
 
+	'report-dir': './tmp/coverage',
+	'temp-dir':   './tmp/.nyc_output',
+
+	'include': [
+		'src/**',
+	],
+
+	'exclude': [
+		'**/*.test.js',
+		'**/*.test.mjs',
+		'**/*.spec.js',
+		'**/*.spec.mjs',
+		'tests/bootstrap.mjs',
+	],
+	// ["coverage/**","packages/*/test/**","test/**","test{,-*}.js","**/*{.,-}test.js","**/__tests__/**","**/{ava,babel,jest,nyc,rollup,webpack}.config.js"]]
+
+	'excludeNodeModules': true
+}
