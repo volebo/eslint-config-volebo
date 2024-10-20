@@ -14,7 +14,7 @@
 ```
 
 [![npm version](https://img.shields.io/npm/v/eslint-config-volebo.svg)](https://www.npmjs.com/package/eslint-config-volebo)
-[![Build Status](https://app.travis-ci.com/maxkoryukov/eslint-config-volebo.svg?branch=master)](https://app.travis-ci.com/maxkoryukov/eslint-config-volebo)
+[![Build Status](https://gitlab.com/volebo/eslint-config-volebo/badges/master/pipeline.svg?ignore_skipped=true)](https://gitlab.com/volebo/eslint-config-volebo)
 [![npm downloads](https://img.shields.io/npm/dm/eslint-config-volebo.svg)](https://www.npmjs.com/package/eslint-config-volebo)
 [![Known Vulnerabilities](https://snyk.io/test/gitlab/volebo/eslint-config-volebo/badge.svg)](https://snyk.io/test/gitlab/volebo/eslint-config-volebo)
 
@@ -24,52 +24,23 @@ Common style guide for all Volebo.Net projects
 ## Install
 
 ```shell
-npm install eslint eslint-config-volebo -D
+npm install -D eslint-config-volebo eslint
 ```
 
-## Usage
-
-Then paste this to the `eslint.config.js` in the root of your project:
+Then create an `eslint.config.js` file in the root of your project:
 
 ```javascript
-export { default } from 'eslint-config-volebo'
+import volebo from 'eslint-config-volebo'
 
+export default [
+	...volebo,
+]
 ```
 
+### Old versions
 
-### Old `eslint` versions
+See [README.old.md](./README.old.md)
 
-Just paste this to the `.eslintrc.js` in the root of your project:
+## LICENSE
 
-```javascript
-exports = module.exports = {
-  'extends': [
-    'eslint-config-volebo',
-  ],
-}
-```
-
-### Very old `eslint` versions
-
-Long time ago `eslint` didn't have such a good support of shared configs, (see
-[this issue](https://gitlab.com/eslint/eslint/issues/3458)), but now it does.
-
-If you are still using the old `eslint` this can help:
-
-```javascript
-const path = require('path')
-
-exports = module.exports = {
-  'extends': [
-    path.join(__dirname,
-      'node_modules',
-      'eslint-config-volebo',
-      'index.js'
-    )
-  ]
-}
-```
-
-## License
-
-[LICENSE here](LICENSE)
+See [LICENSE](./LICENSE)

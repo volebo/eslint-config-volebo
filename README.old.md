@@ -1,3 +1,6 @@
+# eslint-config-volebo
+
+```yaml
 ################################################################################
 #                                                                              #
 # db    db  .8888.  dP     888888b 8888ba   .8888.     d8b   db 888888b d8888P #
@@ -8,51 +11,41 @@
 #    YP     `888P'  88888P 888888P 888888'  `888P'  88 VP    8P 888888P   dP   #
 #                                                                              #
 ################################################################################
+```
 
-image: node:20
+### Old `eslint` versions
 
-cache:
-  key: deps-1
-  paths:
-  - node_modules/
+Just paste this to the `.eslintrc.js` in the root of your project:
 
-stages:
-  - test
-  - release
+```javascript
+exports = module.exports = {
+  'extends': [
+    'eslint-config-volebo',
+  ],
+}
+```
 
-# ------------------------------------------------------------------------------
+### Very old `eslint` versions
 
-before_script:
-  - node --version
-  - npm --version
-  - npm install --quiet
+Long time ago `eslint` didn't have such a good support of shared configs, (see
+[this issue](https://gitlab.com/eslint/eslint/issues/3458)), but now it does.
 
-test.test:
-  stage: test
+If you are still using the old `eslint` this can help:
 
-  script:
-    - npm run lint
+```javascript
+const path = require('path')
 
-test.test:
-  stage: test
+exports = module.exports = {
+  'extends': [
+    path.join(__dirname,
+      'node_modules',
+      'eslint-config-volebo',
+      'index.js'
+    )
+  ]
+}
+```
 
-  script:
-    - npm run test
+## License
 
-test.coverage:
-  stage: test
-  script:
-    - npm run coverage
-
-  coverage: '/Statements\s*:\s*([\d.%]+).*$/'
-
-release:
-  stage: release
-  rules:
-    # only for tags `v1.1.xxxxxxx(whatever)`
-    - if: '$CI_COMMIT_TAG =~ /^v\d+\.\d+\./'
-      when: manual
-
-  script:
-    - echo "//registry.npmjs.org/:_authToken=${VLB_CI_NPM_TOKEN}" > ~/.npmrc
-    - npm publish
+[LICENSE here](LICENSE)

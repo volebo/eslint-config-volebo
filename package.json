@@ -1,6 +1,6 @@
 {
   "name": "eslint-config-volebo",
-  "version": "3.0.4",
+  "version": "4.0.0-beta.2",
   "description": "ESLint rules for volebo.net",
   "license": "SEE LICENSE IN LICENSE",
   "private": false,

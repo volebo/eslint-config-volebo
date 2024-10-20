@@ -30,6 +30,9 @@
 
 # place per-project settings here
 
+/tools/
+OLD.*
+
 # =========================================
 # common part
 # =========================================
@@ -73,6 +76,7 @@ tests/
 
 # =========================================
 
+.c8rc.json
 .github/
 .gitlab/
 .serverless/
