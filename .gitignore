@@ -32,6 +32,9 @@
 
 # place per-project settings here
 
+# generated from nyc.config:
+.c8rc.json
+
 # =========================================
 # common part
 # =========================================
