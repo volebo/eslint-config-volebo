@@ -113,6 +113,10 @@ export default [
 
 			'unicorn/prevent-abbreviations': ['warn'],
 			'unicorn/no-null': ['off'],
+
+			// mocha
+
+			'mocha/no-mocha-arrows': ['warn'],
 		},
 	},
 
