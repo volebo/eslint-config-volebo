@@ -78,10 +78,13 @@ export default [
 		rules: {
 			'object-shorthand': ['error', 'consistent'],
 			'no-process-exit': ['error'],
+			'no-var': ['error'],
 			'no-warning-comments': ['warn', { 'terms': ['todo', 'fixme', 'xxx', 'bug'], 'location': 'start' }],
 			// 'no-unused-vars': ['warn'],
+			'yoda': ['warn', 'always'],
 
 			'@stylistic/comma-dangle': ['error', 'always-multiline'],
+			'@stylistic/comma-style': ['warn', 'last'],
 			'@stylistic/indent': [
 				'error',
 				'tab',
@@ -102,8 +105,11 @@ export default [
 				},
 			}],
 			'@stylistic/no-tabs': ['off', { allowIndentationTabs: true }],
+			'@stylistic/no-trailing-spaces': ['error'],
 			'@stylistic/quote-props': ['error', 'consistent', { 'keywords': true }],
 			'@stylistic/semi': ['error', 'never'],
+
+			// unicorn
 
 			'unicorn/prevent-abbreviations': ['warn'],
 			'unicorn/no-null': ['off'],
