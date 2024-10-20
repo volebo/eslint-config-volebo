@@ -76,6 +76,7 @@ export default [
 		},
 
 		rules: {
+			'no-extra-semi': ['error'],
 			'object-shorthand': ['error', 'consistent'],
 			'no-process-exit': ['error'],
 			'no-var': ['error'],
