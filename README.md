@@ -37,6 +37,20 @@ export default [
 ]
 ```
 
+## SHORT
+
+- preferably ESM
+- `<tab>`
+- no semicolons
+
+### Based on
+
+[![neostandard javascript style](https://img.shields.io/badge/code_style-neostandard-7fffff?style=flat&labelColor=ff80ff)](https://github.com/neostandard/neostandard)
+
+- neostandard
+- eslint-plugin-unicorn
+- eslint-plugin-mocha
+
 ### Old versions
 
 See [README.old.md](./README.old.md)

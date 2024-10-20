@@ -23,8 +23,6 @@
 # You should have received a copy of the MIT License along with this
 # program. If not, see <https://opensource.org/licenses/MIT>.
 #
-# http://spdx.org/licenses/MIT
-#
 ################################################################################
 */
 
@@ -33,28 +31,29 @@ import fs           from 'node:fs'
 import path         from 'node:path'
 import { ESLint }   from 'eslint'
 
-// const thisConfig   = require('../index.js')
+
+const SAMPLES_BASE_PATH = './tests/samples/'
 
 
-function _listTestFilesSync(testDir) {
+function _listTestFilesSync (testDir) {
 	const _dpath = path.join(SAMPLES_BASE_PATH, testDir)
 	return fs.readdirSync(_dpath, { withFileTypes: true })
 		.filter(dirent => !dirent.isDirectory())
 		.map(fileInfo => path.join(testDir, fileInfo.name))
 }
 
-const eslint = new ESLint({'ignore': false})
+const eslint = new ESLint({ 'ignore': false })
 
 // mostly taken from ESLint examples:
-function lintAsync(filePattern) {
+function lintAsync (filePattern) {
 
 	// 2. Lint files.
 	// const results = await eslint.lintFiles(filePattern)
 	const results = eslint.lintFiles(filePattern)
 
 	// 3. Format the results.
-	//const formatter = await eslint.loadFormatter("stylish")
-	//const resultText = formatter.format(results)
+	// const formatter = await eslint.loadFormatter("stylish")
+	// const resultText = formatter.format(results)
 
 	// 4. Output it.
 	// console.log(resultText)
@@ -63,19 +62,16 @@ function lintAsync(filePattern) {
 }
 
 
-const SAMPLES_BASE_PATH = './tests/samples/'
+describe('eslint-config-volebo', function () {
 
 
-describe('eslint-config-volebo', () => {
-
-
-	describe('linting GOOD files', () => {
+	describe('linting GOOD files', function () {
 
 		const testCases = _listTestFilesSync('oks')
 
-		testCases.forEach(name => {
+		for (const name of testCases) {
 
-			it(`should pass [${name}]`, () => {
+			it(`should pass [${name}]`, function () {
 
 				return lintAsync(path.join(SAMPLES_BASE_PATH, name))
 					.then(res => {
@@ -90,18 +86,17 @@ describe('eslint-config-volebo', () => {
 						expect(res0).has.property('warningCount', 0, msgs)
 					})
 			})
-		})
+		}
 	})
 
 
-	describe('linting WARN files', () => {
+	describe('linting WARN files', function () {
 
 		const testCases = _listTestFilesSync('warns')
 
-		testCases.forEach(name => {
+		for (const name of testCases) {
 
-			it(`should pass [${name}]`, () => {
-
+			it(`should warn [${name}]`, function () {
 
 				return lintAsync(path.join(SAMPLES_BASE_PATH, name))
 					.then(res => {
@@ -116,19 +111,19 @@ describe('eslint-config-volebo', () => {
 						expect(res0).has.property('warningCount').greaterThan(0, msgs)
 					})
 			})
-		})
+		}
 	})
 
 
-	describe('linting ERROR files', () => {
+	describe('linting ERROR files', function () {
 
 		const testCases = _listTestFilesSync('errors')
 
-		testCases.forEach(name => {
+		for (const name of testCases) {
 
-			it(`should pass [${name}]`, () => {
+			it(`should error [${name}]`, function () {
 
-				const _m = name.match(/\d+\-([-\w\d]+)\.(\d+)/i)
+				const _m = name.match(/([-\w\d]+)\.(\d+)/i)
 
 				const ruleName = _m?.[1]
 				const errCount = Number(_m?.[2])
@@ -145,16 +140,22 @@ describe('eslint-config-volebo', () => {
 						const msgs = res[0].messages?.map(m => m.message).join(';')
 						const res0 = res[0]
 
-						//expect(res0).has.property('errorCount').greaterThan(0, msgs)
-						expect(res0).has.property('errorCount',   errCount, msgs)
-						expect(res0).has.property('warningCount', 0,        msgs)
+						const unicornAbbrevs = res[0].messages?.filter(m => 'unicorn/prevent-abbreviations' === m.ruleId).length
 
-						res0.messages.forEach(msg => {
-							expect(msg.ruleId).matches(new RegExp('/' + ruleName + '$'))
-						})
+
+						// expect(res0).has.property('errorCount').greaterThan(0, msgs)
+						expect(res0).has.property('errorCount',   errCount,       msgs)
+						expect(res0).has.property('warningCount', unicornAbbrevs, msgs)
+
+						for (const msg of res0?.messages) {
+							if ('unicorn/prevent-abbreviations' === msg.ruleId) {
+								continue
+							}
+							expect(msg.ruleId).matches(new RegExp('(^|/)' + ruleName + '$'))
+						}
 					})
 			})
-		})
+		}
 	})
 
 })

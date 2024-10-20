@@ -77,6 +77,7 @@ export default [
 
 		rules: {
 			'object-shorthand': ['error', 'consistent'],
+			'no-process-exit': ['error'],
 			'no-warning-comments': ['warn', { 'terms': ['todo', 'fixme', 'xxx', 'bug'], 'location': 'start' }],
 			// 'no-unused-vars': ['warn'],
 
@@ -86,7 +87,7 @@ export default [
 				'tab',
 				{
 					'SwitchCase': 1,
-				}
+				},
 			],
 
 			'@stylistic/padded-blocks': 'off',
@@ -106,7 +107,7 @@ export default [
 
 			'unicorn/prevent-abbreviations': ['warn'],
 			'unicorn/no-null': ['off'],
-		}
+		},
 	},
 
 	{
@@ -127,7 +128,7 @@ export default [
 				'filename2suitename': true,
 				'filename2suitenameEsm': true,
 				'tags': true,
-			}
+			},
 		},
 
 		rules: {
