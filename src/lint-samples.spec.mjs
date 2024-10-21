@@ -44,7 +44,7 @@ function _listTestFilesSync (testDir) {
 
 
 // takes eslint output and generates a string to annotate failing tests
-function lintResToString(oneEslintRes) {
+function lintResToString (oneEslintRes) {
 	const msgs = oneEslintRes
 		?.messages
 		?.map(m => {
@@ -153,10 +153,10 @@ describe('eslint-config-volebo', function () {
 						// join eslint messages for debugging
 						const msgs = lintResToString(res[0])
 						const res0 = res[0]
-
 						const unicornAbbrevs = res[0].messages?.filter(m => 'unicorn/prevent-abbreviations' === m.ruleId).length
 
-						// expect(res0).has.property('errorCount').greaterThan(0, msgs)
+						// console.dir(res0, { depth: 8 })
+
 						expect(res0).has.property('errorCount',   errCount,       msgs)
 						expect(res0).has.property('warningCount', unicornAbbrevs, msgs)
 

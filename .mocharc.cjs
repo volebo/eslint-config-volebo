@@ -55,11 +55,10 @@ module.exports = {
 	timeout: MOCHA_TIMEOUT_DEFAULT,
 
 	spec: [
-		// 'tests/**/*.test.js',
-		// 'tests/**/*.test.mjs',
+		// 'tests/**/*.test.?js',
+		// 'tests/**/*.spec.?js',
 
-		// 'src/**/*.test.js',
-		'src/**/*.test.mjs',
-		// 'src/**/*.spec.js',
+		'src/**/*.test.?js',
+		'src/**/*.spec.?js',
 	],
 }
