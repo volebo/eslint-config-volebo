@@ -11,14 +11,15 @@
 
 image: node:20
 
+stages:
+  - test
+  - release
+
+
 cache:
   key: deps-1
   paths:
   - node_modules/
-
-stages:
-  - test
-  - release
 
 # ------------------------------------------------------------------------------
 
@@ -27,15 +28,19 @@ before_script:
   - npm --version
   - npm install --quiet
 
-test.test:
+test.lint:
   stage: test
 
   script:
     - npm run lint
 
-test.test:
+test.test.20:
   stage: test
+  script:
+    - npm run test
 
+test.test.18:
+  image: node:18
   script:
     - npm run test
 
@@ -55,4 +60,5 @@ release:
 
   script:
     - echo "//registry.npmjs.org/:_authToken=${VLB_CI_NPM_TOKEN}" > ~/.npmrc
+    - npm whoami
     - npm publish

@@ -76,12 +76,13 @@ tests/
 
 # =========================================
 
-.c8rc.json
 .github/
 .gitlab/
 .serverless/
+
 .browserslistrc
 .bithoundrc
+.c8rc.json
 .codeclimate.yml
 .editorconfig
 .eslintignore
@@ -95,8 +96,8 @@ tests/
 .node-inspectorrc
 .nyc.config.*js
 .travis.yml
-CONTRIBUTING.md
 CHANGELOG.md
+CONTRIBUTING.md
 HEADER
 babel.config.js
 capacitor.config.json

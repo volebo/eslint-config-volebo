@@ -28,8 +28,7 @@
 ################################################################################
 */
 
-'use strict'
-
+// eslint-disable-next-line unicorn/prefer-module
 module.exports = {
 	'all': true,
 
@@ -62,5 +61,5 @@ module.exports = {
 	],
 	// ["coverage/**","packages/*/test/**","test/**","test{,-*}.js","**/*{.,-}test.js","**/__tests__/**","**/{ava,babel,jest,nyc,rollup,webpack}.config.js"]]
 
-	'excludeNodeModules': true
+	'excludeNodeModules': true,
 }
