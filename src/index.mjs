@@ -87,7 +87,7 @@ export default [
 					'xxx',
 					'bug',
 				],
-				location: 'start'
+				location: 'start',
 			}],
 			// 'no-unused-vars': ['warn'],
 			'yoda': ['warn', 'always'],
@@ -133,7 +133,11 @@ export default [
 
 			// unicorn
 
-			'unicorn/prevent-abbreviations': ['warn'],
+			'unicorn/prevent-abbreviations': ['warn', {
+				allowList: {
+					'res': true,
+				},
+			}],
 			'unicorn/no-null': ['off'],
 
 			// mocha

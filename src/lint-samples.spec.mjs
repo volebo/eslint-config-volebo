@@ -35,17 +35,17 @@ import { ESLint }   from 'eslint'
 const SAMPLES_BASE_PATH = './tests/samples/'
 
 
-function _listTestFilesSync (testDir) {
-	const _dpath = path.join(SAMPLES_BASE_PATH, testDir)
+function _listTestFilesSync (testDirectory) {
+	const _dpath = path.join(SAMPLES_BASE_PATH, testDirectory)
 	return fs.readdirSync(_dpath, { withFileTypes: true })
 		.filter(dirent => !dirent.isDirectory())
-		.map(fileInfo => path.join(testDir, fileInfo.name))
+		.map(fileInfo => path.join(testDirectory, fileInfo.name))
 }
 
 
 // takes eslint output and generates a string to annotate failing tests
-function lintResToString (oneEslintRes) {
-	const msgs = oneEslintRes
+function lintResToString (oneEslintResult) {
+	const msgs = oneEslintResult
 		?.messages
 		?.map(m => {
 			return `${m.line}: ${m.message}`
