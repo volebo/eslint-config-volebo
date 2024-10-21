@@ -17,6 +17,7 @@ class Animal {
 }
 
 const zebra = new Animal('zebra')
+debug(zebra)
 
 if (null === zebra) {
 	for (const x of ['a', 'b']) {
@@ -24,4 +25,11 @@ if (null === zebra) {
 	}
 }
 
-debug(zebra)
+let anObject = {
+	'require': ['esm'],
+	'report-dir': './tmp/coverage',
+	'temp-dir':   './tmp/.nyc_output',
+}
+// now inline object:
+anObject = { name: 12, surname: 'bobbbyyyy' }
+debug(anObject)

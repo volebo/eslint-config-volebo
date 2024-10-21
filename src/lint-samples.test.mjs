@@ -42,7 +42,21 @@ function _listTestFilesSync (testDir) {
 		.map(fileInfo => path.join(testDir, fileInfo.name))
 }
 
+
+// takes eslint output and generates a string to annotate failing tests
+function lintResToString(oneEslintRes) {
+	const msgs = oneEslintRes
+		?.messages
+		?.map(m => {
+			return `${m.line}: ${m.message}`
+		})
+		.join('; ')
+	return msgs
+}
+
+
 const eslint = new ESLint({ 'ignore': false })
+
 
 // mostly taken from ESLint examples:
 function lintAsync (filePattern) {
@@ -78,7 +92,7 @@ describe('eslint-config-volebo', function () {
 						expect(res).is.an('array').lengthOf(1)
 
 						// join eslint messages for debugging
-						const msgs = res[0]?.messages?.map(m => m.message).join(';')
+						const msgs = lintResToString(res[0])
 						const res0 = res[0]
 
 						expect(res0).has.property('messages').eql([], msgs)
@@ -104,7 +118,7 @@ describe('eslint-config-volebo', function () {
 						expect(res).is.an('array').lengthOf(1)
 
 						// join eslint messages for debugging
-						const msgs = res[0]?.messages?.map(m => m.message).join(';')
+						const msgs = lintResToString(res[0])
 						const res0 = res[0]
 
 						expect(res0).has.property('errorCount', 0, msgs)
@@ -137,11 +151,10 @@ describe('eslint-config-volebo', function () {
 						expect(res).is.an('array').lengthOf(1)
 
 						// join eslint messages for debugging
-						const msgs = res[0].messages?.map(m => m.message).join(';')
+						const msgs = lintResToString(res[0])
 						const res0 = res[0]
 
 						const unicornAbbrevs = res[0].messages?.filter(m => 'unicorn/prevent-abbreviations' === m.ruleId).length
-
 
 						// expect(res0).has.property('errorCount').greaterThan(0, msgs)
 						expect(res0).has.property('errorCount',   errCount,       msgs)

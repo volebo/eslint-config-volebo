@@ -80,7 +80,15 @@ export default [
 			'object-shorthand': ['error', 'consistent'],
 			'no-process-exit': ['error'],
 			'no-var': ['error'],
-			'no-warning-comments': ['warn', { 'terms': ['todo', 'fixme', 'xxx', 'bug'], 'location': 'start' }],
+			'no-warning-comments': ['warn', {
+				terms: [
+					'todo',
+					'fixme',
+					'xxx',
+					'bug',
+				],
+				location: 'start'
+			}],
 			// 'no-unused-vars': ['warn'],
 			'yoda': ['warn', 'always'],
 
@@ -90,23 +98,36 @@ export default [
 				'error',
 				'tab',
 				{
-					'SwitchCase': 1,
+					SwitchCase: 1,
 				},
 			],
 
 			'@stylistic/padded-blocks': 'off',
-			'@stylistic/no-multiple-empty-lines': ['error', { max: 2, maxBOF: 1, maxEOF: 1 }],
+			'@stylistic/key-spacing': ['error', {
+				beforeColon: false,
+				afterColon: true,
+				mode: 'minimum',
+
+				// mk @ 2024-10-20: it doesn't allow to write "objects" without aligning (and I do it a lot)
+				// align: {beforeColon: false, afterColon: true, mode: 'minimum', on: 'value', },
+			}],
 			'@stylistic/no-multi-spaces': ['warn', {
 				ignoreEOLComments: true,
 				exceptions: {
 					// I like to align "import" declarations
-					'ImportDeclaration': true,
-					'ExportAllDeclaration': true,
-					'ExportNamedDeclaration': true,
+					ImportDeclaration: true,
+					ExportAllDeclaration: true,
+					ExportNamedDeclaration: true,
 				},
 			}],
-			'@stylistic/no-tabs': ['off', { allowIndentationTabs: true }],
+			'@stylistic/no-multiple-empty-lines': ['error', {
+				max: 2,
+				maxBOF: 1,
+				maxEOF: 1,
+			}],
 			'@stylistic/no-trailing-spaces': ['error'],
+
+			'@stylistic/no-tabs': ['off', { allowIndentationTabs: true }],
 			'@stylistic/quote-props': ['error', 'consistent', { 'keywords': true }],
 			'@stylistic/semi': ['error', 'never'],
 
