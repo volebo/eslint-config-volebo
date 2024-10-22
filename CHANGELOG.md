@@ -62,6 +62,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Changed
 
+- **base config was inherited from `neostandard` with `unicorn` plugin**
 - move to ESM
 - migrate to eslint **flat** configs
 

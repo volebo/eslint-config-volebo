@@ -27,9 +27,12 @@
 */
 
 import neostandard         from 'neostandard'
-import mochaPlugin         from 'eslint-plugin-mocha'
-import eslintPluginUnicorn from 'eslint-plugin-unicorn'
 import globals             from 'globals'
+
+import pluginMocha         from 'eslint-plugin-mocha'
+import pluginUnicorn       from 'eslint-plugin-unicorn'
+import pluginChaiFriendly  from 'eslint-plugin-chai-friendly'
+
 // import jsdoc from 'eslint-plugin-jsdoc'
 //                    eslint-plugin-import
 
@@ -45,10 +48,10 @@ export default [
 	...neostandard(),
 	// jsdoc.configs['flat/recommended-typescript-flavor'],
 
-	// mochaPlugin.configs.flat.all,   //  to enable all
-	mochaPlugin.configs.flat.recommended,
+	// pluginMocha.configs.flat.all,   //  to enable all
+	pluginMocha.configs.flat.recommended,
 
-	eslintPluginUnicorn.configs['flat/recommended'],
+	pluginUnicorn.configs['flat/recommended'],
 
 	// =========================================================================
 	// volebo config:
@@ -168,6 +171,10 @@ export default [
 			},
 		},
 
+		plugins: {
+			'chai-friendly': pluginChaiFriendly
+		},
+
 		rules: {
 			// there is a problem with this rule: we generate the "top level"
 			// test name (in `describe`) using filename. I _could_ consider
@@ -176,6 +183,20 @@ export default [
 			// - call describe
 			// but ATM it is easier for me to disable this rule completely
 			'mocha/no-setup-in-describe': ['warn'],
+
+			// chaiJS has expressions like:
+			//
+			// 		expect(act).is.null
+			//
+			// but original eslint's 'no-unused-expressions' raise an error.
+			// in order to keep the rule working, but with chai-expressions
+			// this plugin is added:
+			'no-unused-expressions': ['off'],
+			'chai-friendly/no-unused-expressions': ['error', {
+				allowShortCircuit: true,
+				allowTernary: true,
+				allowTaggedTemplates: true,
+			}],
 		},
 	},
 ]
