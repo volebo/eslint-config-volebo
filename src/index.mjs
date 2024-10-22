@@ -55,14 +55,6 @@ export default [
 	// =========================================================================
 	{
 		name: 'volebo',
-		ignores: [
-			'/node_modules/*',
-			'/bower_components/*',
-			'/coverage/',
-			'/tmp/',
-			'/log/',
-			'/docker/',
-		],
 
 		languageOptions: {
 			parserOptions: {
@@ -144,6 +136,15 @@ export default [
 
 			'mocha/no-mocha-arrows': ['warn'],
 		},
+
+		ignores: [
+			'bower_components/*',
+			'coverage/',
+			'docker/',
+			'log/',
+			'node_modules/*',
+			'tmp/',
+		],
 	},
 
 	{
@@ -174,19 +175,7 @@ export default [
 			// - get name
 			// - call describe
 			// but ATM it is easier for me to disable this rule completely
-			'mocha/no-setup-in-describe': ['off'],
+			'mocha/no-setup-in-describe': ['warn'],
 		},
-	},
-
-	// !!! THIS PROJECT !!!
-	{
-
-		ignores: [
-			// =========================================
-			// project-related ignores
-			// =========================================
-
-			'/docker/*',
-		],
 	},
 ]
