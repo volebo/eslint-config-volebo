@@ -10,8 +10,8 @@
 #                                                                              #
 ################################################################################
 #
-# Copyright (C) 2016-2024 Volebo <dev@volebo.net>
-# Copyright (C) 2016-2024 Maksim Koryukov <maxkoryukov@volebo.net>
+# Copyright (C) 2016 Volebo <dev@volebo.net>
+# Copyright (C) 2016 Maksim Koryukov <maxkoryukov@volebo.net>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the MIT License, attached to this software package.
@@ -71,9 +71,65 @@ export default [
 		},
 
 		rules: {
-			'no-extra-semi': ['error'],
+
+			// -----------------------------------------------------------------
+			// complexity and line numbers:
+			// -----------------------------------------------------------------
+			'max-params':           ['warn', { 'max': 4 }],
+			'complexity':           ['warn', { 'max': 20 }],
+			'max-depth':            ['warn', { 'max': 5 }],
+			'max-nested-callbacks': ['warn', { 'max': 3 }],
+			'max-len':              ['warn', {
+				code:                    120,
+				tabWidth:                2,
+				// comments:              enforces a maximum line length for comments; defaults to value of code
+				// ignorePattern:         ignores lines matching a regular expression; can only match a single line and need to be double escaped when written in YAML or JSON
+				ignoreComments:           true, // true ignores all trailing comments and comments on their own line
+				// ignoreTrailingComments:   true, // true ignores only trailing comments
+				ignoreUrls:               true, // true ignores lines that contain a URL
+				ignoreStrings:            true, // true ignores lines that contain a double-quoted or single-quoted string
+				ignoreTemplateLiterals:   true, // true ignores lines that contain a template literal
+				ignoreRegExpLiterals:     true, // true ignores lines that contain a RegExp literal
+			}],
+			// 'max-lines': ['warn', { 'max': 300 }],
+			// 'max-lines-per-function': ['warn', { 'max': 300 }],
+			// 'max-statements': ['warn', { 'max': 300 }],
+
+			// -----------------------------------------------------------------
+
 			'object-shorthand': ['error', 'consistent'],
-			'no-process-exit': ['error'],
+			'no-extra-semi': ['error'],
+
+			// because we can rely on unicorn/no-process-exit (TESTED)
+			'no-process-exit': ['off'],
+
+			// CODE STYLE: neostandard:  deactivated – _clashes_ with the
+			// `noPropertyAccessFromIndexSignature` check in TypeScript
+			'dot-notation': ['off'],
+			'curly': ['error'],
+
+			'no-irregular-whitespace': ['error', { 'skipComments': true }],
+			'strict':        ['error', 'global'],
+
+			'no-eq-null':    ['error'],
+			'eqeqeq':        ['error' /*'smart'*/],
+
+			'no-loop-func':  ['error'],
+			'require-yield': ['error'],
+
+			'no-empty': ['error', {
+				allowEmptyCatch: false
+			}],
+			'no-empty-function': ['error'],
+
+			'no-unused-vars' : ['error', {
+				args: 'all',
+				argsIgnorePattern: '^__',
+	      		caughtErrors: 'none',
+	      		ignoreRestSiblings: true,
+				vars: 'all',
+			}],
+
 			'no-var': ['error'],
 			'no-warning-comments': ['warn', {
 				terms: [
@@ -84,9 +140,32 @@ export default [
 				],
 				location: 'start',
 			}],
-			// 'no-unused-vars': ['warn'],
 			'yoda': ['warn', 'always'],
 
+			// -----------------------------------------------------------------
+			// CODE SMELL
+			// -----------------------------------------------------------------
+			'no-global-assign': ['error'],
+			'no-extend-native': ['error'],
+
+			'no-bitwise':    ['error'],
+			'guard-for-in':  ['error'],
+			'no-console':    ['error'],  // use `debug` or other packages, or add explicit "eslint-ignore" for lines with console.xxx
+			// TODO: move 'no-alert' to the "browser.mjs"
+			'no-alert':      ['error'],
+
+			'no-plusplus':   ['error', {
+				allowForLoopAfterthoughts: true,
+			}],
+			'no-param-reassign': ['error', {
+				props: false,
+			}],
+
+			// -----------------------------------------------------------------
+			// @stylistic
+			// -----------------------------------------------------------------
+
+			'@stylistic/no-extra-parens': ['warn', 'all', { 'nestedBinaryExpressions': false }],
 			'@stylistic/comma-dangle': ['error', 'always-multiline'],
 			'@stylistic/comma-style': ['warn', 'last'],
 			'@stylistic/indent': [
@@ -97,7 +176,7 @@ export default [
 				},
 			],
 
-			'@stylistic/padded-blocks': 'off',
+			'@stylistic/padded-blocks': ['off'],
 			'@stylistic/key-spacing': ['error', {
 				beforeColon: false,
 				afterColon: true,
@@ -126,16 +205,34 @@ export default [
 			'@stylistic/quote-props': ['error', 'consistent', { 'keywords': true }],
 			'@stylistic/semi': ['error', 'never'],
 
+			// -----------------------------------------------------------------
 			// unicorn
+			// -----------------------------------------------------------------
 
+			'unicorn/prefer-top-level-await': ['off'],
 			'unicorn/prevent-abbreviations': ['warn', {
 				allowList: {
+					'err': true,
+					'obj': true,
+					'req': true,
 					'res': true,
+					'val': true,
+					'param': true,
 				},
 			}],
 			'unicorn/no-null': ['off'],
 
+			// because of https://github.com/sindresorhus/eslint-plugin-unicorn/issues/1193
+			// I'm going to disable these three rules, since they make
+			// a "not bad" code looks like there is a critical error
+			'unicorn/no-array-for-each': ['warn'],
+			'unicorn/no-array-callback-reference': ['off'],
+			'unicorn/no-array-method-this-argument': ['off'],
+
+
+			// -----------------------------------------------------------------
 			// mocha
+			// -----------------------------------------------------------------
 
 			'mocha/no-mocha-arrows': ['warn'],
 		},
