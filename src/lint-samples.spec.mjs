@@ -104,9 +104,9 @@ describe('eslint-config-volebo', function () {
 	})
 
 
-	describe('linting WARN files', function () {
+	describe('linting WARN files [long files]', function () {
 
-		const testCases = _listTestFilesSync('warns')
+		const testCases = _listTestFilesSync('warns-many')
 
 		for (const name of testCases) {
 
@@ -129,7 +129,53 @@ describe('eslint-config-volebo', function () {
 	})
 
 
-	describe('linting ERROR files', function () {
+	describe('linting WARN files [per rule]', function () {
+
+		const testCases = _listTestFilesSync('warns')
+
+		for (const name of testCases) {
+
+			it(`should error [${name}]`, function () {
+
+				const _m = name.match(/([-\w\d]+)\.(\d+)/i)
+
+				const ruleName = _m?.[1]
+				const expWarnCount = Number(_m?.[2])
+				expect(expWarnCount)
+					.is.a('number')
+					.greaterThan(0, 'file name has wrong format')
+
+				return lintAsync(path.join(SAMPLES_BASE_PATH, name))
+					.then(res => {
+
+						expect(res).is.an('array').lengthOf(1)
+
+						// console.dir(res, { depth: 8 })
+
+						// join eslint messages for debugging
+						const msgs = lintResToString(res[0])
+						const res0 = res[0]
+						const unicornAbbrevs = res[0].messages?.filter(m => 'unicorn/prevent-abbreviations' === m.ruleId).length
+
+						// console.dir(res0, { depth: 8 })
+
+						expect(res0).has.property('errorCount',   0)
+						expect(res0).has.property('warningCount', expWarnCount,   msgs)
+						// expect(res0).has.property('warningCount', unicornAbbrevs, msgs)
+
+						for (const msg of res0?.messages) {
+							if ('unicorn/prevent-abbreviations' === msg.ruleId) {
+								continue
+							}
+							expect(msg.ruleId).matches(new RegExp('(^|/)' + ruleName + '$'))
+						}
+					})
+			})
+		}
+	})
+
+
+	describe('linting ERROR files [per rule]', function () {
 
 		const testCases = _listTestFilesSync('errors')
 
@@ -149,6 +195,8 @@ describe('eslint-config-volebo', function () {
 					.then(res => {
 
 						expect(res).is.an('array').lengthOf(1)
+
+						// console.dir(res, { depth: 8 })
 
 						// join eslint messages for debugging
 						const msgs = lintResToString(res[0])
