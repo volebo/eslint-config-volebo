@@ -9,7 +9,7 @@
 #                                                                              #
 ################################################################################
 
-image: node:20
+image: node:22
 
 stages:
   - test
@@ -18,9 +18,12 @@ stages:
 
 # http://docs.gitlab.com/ce/ci/yaml/README.html#cache
 cache:
-  key: deps-1
+  key:
+    files:
+      - package.json
+    prefix: npm-packages
   paths:
-  - node_modules/
+    - node_modules/
 
 # ------------------------------------------------------------------------------
 
@@ -29,16 +32,23 @@ before_script:
   - npm --version
   - npm install --quiet
 
+
 test.lint:
   stage: test
   script:
-    - npm run lint
+    - npm install eslint-formatter-gitlab
+    - npm run lint -- --format gitlab
+  artifacts:
+    reports:
+      codequality: gl-codequality.json
+
 
 test.test.18:
   stage: test
   image: node:18
   script:
     - npm run test
+
 
 test.test.20:
   stage: test
