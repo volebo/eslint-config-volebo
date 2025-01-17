@@ -112,21 +112,21 @@ export default [
 			'strict':        ['error', 'global'],
 
 			'no-eq-null':    ['error'],
-			'eqeqeq':        ['error' /*'smart'*/],
+			'eqeqeq':        ['error'], // 'smart'
 
 			'no-loop-func':  ['error'],
 			'require-yield': ['error'],
 
 			'no-empty': ['error', {
-				allowEmptyCatch: false
+				allowEmptyCatch: false,
 			}],
 			'no-empty-function': ['error'],
 
-			'no-unused-vars' : ['error', {
+			'no-unused-vars': ['error', {
 				args: 'all',
 				argsIgnorePattern: '^__',
-	      		caughtErrors: 'none',
-	      		ignoreRestSiblings: true,
+				caughtErrors: 'none',
+				ignoreRestSiblings: true,
 				vars: 'all',
 			}],
 
@@ -217,6 +217,7 @@ export default [
 					'req': true,
 					'res': true,
 					'val': true,
+					'msg': true,
 					'param': true,
 				},
 			}],
@@ -269,10 +270,15 @@ export default [
 		},
 
 		plugins: {
-			'chai-friendly': pluginChaiFriendly
+			'chai-friendly': pluginChaiFriendly,
 		},
 
 		rules: {
+			// in mocha tests there are a lot of `describe` and `it`
+			// so actual tests are on 4th of 5th or 6th level of nested
+			// callbacks. Thus: relaxing the rule:
+			'max-nested-callbacks': ['warn', { 'max': 8 }],
+
 			// there is a problem with this rule: we generate the "top level"
 			// test name (in `describe`) using filename. I _could_ consider
 			// breaking the top level decribe call into two lines:

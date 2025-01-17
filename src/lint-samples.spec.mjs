@@ -44,7 +44,7 @@ function _listTestFilesSync (testDirectory) {
 
 
 // takes eslint output and generates a string to annotate failing tests
-function lintResToString (oneEslintResult) {
+function _convertLintOutputToString (oneEslintResult) {
 	const msgs = oneEslintResult
 		?.messages
 		?.map(m => {
@@ -81,6 +81,10 @@ describe('eslint-config-volebo', function () {
 
 	describe('linting GOOD files', function () {
 
+		// we are loading "samples" from the file system
+		// every sample => is a test
+		// so we loads files for creating tests with `it`
+		// eslint-disable-next-line mocha/no-setup-in-describe
 		const testCases = _listTestFilesSync('oks')
 
 		for (const name of testCases) {
@@ -92,7 +96,7 @@ describe('eslint-config-volebo', function () {
 						expect(res).is.an('array').lengthOf(1)
 
 						// join eslint messages for debugging
-						const msgs = lintResToString(res[0])
+						const msgs = _convertLintOutputToString(res[0])
 						const res0 = res[0]
 
 						expect(res0).has.property('messages').eql([], msgs)
@@ -106,6 +110,10 @@ describe('eslint-config-volebo', function () {
 
 	describe('linting WARN files [long files]', function () {
 
+		// we are loading "samples" from the file system
+		// every sample => is a test
+		// so we loads files for creating tests with `it`
+		// eslint-disable-next-line mocha/no-setup-in-describe
 		const testCases = _listTestFilesSync('warns-many')
 
 		for (const name of testCases) {
@@ -118,7 +126,7 @@ describe('eslint-config-volebo', function () {
 						expect(res).is.an('array').lengthOf(1)
 
 						// join eslint messages for debugging
-						const msgs = lintResToString(res[0])
+						const msgs = _convertLintOutputToString(res[0])
 						const res0 = res[0]
 
 						expect(res0).has.property('errorCount', 0, msgs)
@@ -131,6 +139,10 @@ describe('eslint-config-volebo', function () {
 
 	describe('linting WARN files [per rule]', function () {
 
+		// we are loading "samples" from the file system
+		// every sample => is a test
+		// so we loads files for creating tests with `it`
+		// eslint-disable-next-line mocha/no-setup-in-describe
 		const testCases = _listTestFilesSync('warns')
 
 		for (const name of testCases) {
@@ -153,9 +165,9 @@ describe('eslint-config-volebo', function () {
 						// console.dir(res, { depth: 8 })
 
 						// join eslint messages for debugging
-						const msgs = lintResToString(res[0])
+						const msgs = _convertLintOutputToString(res[0])
 						const res0 = res[0]
-						const unicornAbbrevs = res[0].messages?.filter(m => 'unicorn/prevent-abbreviations' === m.ruleId).length
+						// const unicornAbbrevs = res[0].messages?.filter(m => 'unicorn/prevent-abbreviations' === m.ruleId).length
 
 						// console.dir(res0, { depth: 8 })
 
@@ -177,6 +189,10 @@ describe('eslint-config-volebo', function () {
 
 	describe('linting ERROR files [per rule]', function () {
 
+		// we are loading "samples" from the file system
+		// every sample => is a test
+		// so we loads files for creating tests with `it`
+		// eslint-disable-next-line mocha/no-setup-in-describe
 		const testCases = _listTestFilesSync('errors')
 
 		for (const name of testCases) {
@@ -199,7 +215,7 @@ describe('eslint-config-volebo', function () {
 						// console.dir(res, { depth: 8 })
 
 						// join eslint messages for debugging
-						const msgs = lintResToString(res[0])
+						const msgs = _convertLintOutputToString(res[0])
 						const res0 = res[0]
 						const unicornAbbrevs = res[0].messages?.filter(m => 'unicorn/prevent-abbreviations' === m.ruleId).length
 
