@@ -58,8 +58,8 @@
   "dependencies": {
     "eslint-plugin-chai-friendly": "^1.0.1",
     "eslint-plugin-mocha": "^10.5.0",
-    "eslint-plugin-unicorn": "^56.0.0",
-    "globals": "^15.11.0",
-    "neostandard": "^0.11.6"
+    "eslint-plugin-unicorn": "^56.0.1",
+    "globals": "^15.14.0",
+    "neostandard": "^0.12.0"
   }
 }
