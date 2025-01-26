@@ -10,8 +10,8 @@
 #                                                                              #
 ################################################################################
 #
-# Copyright (C) 2016-2024 Volebo <dev@volebo.net>
-# Copyright (C) 2016-2024 Maksim Koryukov <maxkoryukov@volebo.net>
+# Copyright (C) 2016-2025 Volebo <dev@volebo.net>
+# Copyright (C) 2016-2025 Maksim Koryukov <maxkoryukov@volebo.net>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the MIT License, attached to this software package.
@@ -32,8 +32,16 @@ import path         from 'node:path'
 import { ESLint }   from 'eslint'
 
 
+const VLB_TEST_CONSOLE = '1' === process.env.VLB_TEST_CONSOLE
 const SAMPLES_BASE_PATH = './tests/samples/'
 
+
+function printLintingErrorDetails(eslintRes) {
+	if (VLB_TEST_CONSOLE) {
+		// eslint-disable-next-line: no-console
+		console.dir(eslintRes, { depth: 8 })
+	}
+}
 
 function _listTestFilesSync (testDirectory) {
 	const _dpath = path.join(SAMPLES_BASE_PATH, testDirectory)
@@ -162,14 +170,14 @@ describe('eslint-config-volebo', function () {
 
 						expect(res).is.an('array').lengthOf(1)
 
-						// console.dir(res, { depth: 8 })
+						printLintingErrorDetails(res)
 
 						// join eslint messages for debugging
 						const msgs = _convertLintOutputToString(res[0])
 						const res0 = res[0]
 						// const unicornAbbrevs = res[0].messages?.filter(m => 'unicorn/prevent-abbreviations' === m.ruleId).length
 
-						// console.dir(res0, { depth: 8 })
+						printLintingErrorDetails(res0)
 
 						expect(res0).has.property('errorCount',   0)
 						expect(res0).has.property('warningCount', expWarnCount,   msgs)
@@ -212,14 +220,12 @@ describe('eslint-config-volebo', function () {
 
 						expect(res).is.an('array').lengthOf(1)
 
-						// console.dir(res, { depth: 8 })
-
 						// join eslint messages for debugging
 						const msgs = _convertLintOutputToString(res[0])
 						const res0 = res[0]
 						const unicornAbbrevs = res[0].messages?.filter(m => 'unicorn/prevent-abbreviations' === m.ruleId).length
 
-						// console.dir(res0, { depth: 8 })
+						printLintingErrorDetails(res0)
 
 						expect(res0).has.property('errorCount',   errCount,       msgs)
 						expect(res0).has.property('warningCount', unicornAbbrevs, msgs)

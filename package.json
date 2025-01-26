@@ -7,8 +7,19 @@
   "publishConfig": {
     "access": "public"
   },
+  "type": "module",
+  "exports": "./src/index.mjs",
+  "imports": {
+    "#src/*": "./src/*",
+    "#tests/*": "./tests/*"
+  },
+  "scripts": {
+    "test": "npx mocha",
+    "lint": "npx eslint ./src/",
+    "coverage": "node tools/nyc-to-c8.mjs .c8rc.json && npx c8 mocha"
+  },
   "author": {
-    "name": "volebo",
+    "name": "Volebo Dev Team",
     "url": "https://dev.volebo.net"
   },
   "contributors": [
@@ -35,18 +46,6 @@
   "engines": {
     "node": ">=18.0.0",
     "npm": ">=8.0.0"
-  },
-  "type": "module",
-  "main": "./index.js",
-  "exports": "./src/index.mjs",
-  "imports": {
-    "#src/*": "./src/*",
-    "#tests/*": "./tests/*"
-  },
-  "scripts": {
-    "test": "npx mocha",
-    "lint": "npx eslint ./src/",
-    "coverage": "node tools/nyc-to-c8.mjs .c8rc.json && npx c8 mocha"
   },
   "devDependencies": {
     "c8": "^10.1.2",

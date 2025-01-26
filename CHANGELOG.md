@@ -56,6 +56,26 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
   it is a function, but an arrow is ok as well
 - f6e6bbd: rename and reorganize tests
 
+## [4.0.0-beta.3] - 2024-10-21
+
+### Added
+
+- 1df9486: add tests for `space-before-function-paren`
+- 7111bfe: add tests for node 16/18/20
+- 3ee9a48: add new rule (explicitly): `no-extra-semi`
+- 787aefa: GL-11, GL-9, GL-13 add new rules:
+  - `no-var`
+  - `yoda`
+  - `comma-style`
+  - `no-trailing-spaces`
+
+### Changed
+
+- a6d44a0: adjust rule `key-spacing`
+- 0a13ddd: GL-7 relax rule `mocha/no-mocha-arrows` - it is nice when
+  it is a function, but an arrow is ok as well
+- f6e6bbd: rename and reorganize tests
+
 --------------------------------------------------------------------------------
 
 ## [4.0.0-beta.2] - 2024-10-20
