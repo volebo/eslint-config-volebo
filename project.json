@@ -1,0 +1,10 @@
+{
+	// "root": "eslint-config-volebo",
+	"sourceRoot": "{projectRoot}/src",
+	"targets": {
+		"lint": {},
+		"test": {},
+		"version_2": {},
+		"version": {}
+	}
+}
