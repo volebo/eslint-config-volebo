@@ -102,8 +102,11 @@ export default [
 			'dot-notation': ['off'],
 			'curly': ['error'],
 
+			// sometimes a lonely `return` improve readability by explicitly
+			// indicating the end of function
+			'no-useless-return': ['off'],
+
 			'no-irregular-whitespace': ['error', { 'skipComments': true }],
-			'strict':        ['error', 'global'],
 
 			'no-eq-null':    ['error'],
 			'eqeqeq':        ['error'], // 'smart'
@@ -200,36 +203,63 @@ export default [
 			'@stylistic/semi': ['error', 'never'],
 
 			// -----------------------------------------------------------------
-			// unicorn
+			// UNICORN
 			// -----------------------------------------------------------------
 
 			'unicorn/prefer-top-level-await': ['off'],
+			// TODO: maybe OFF?
 			'unicorn/prevent-abbreviations': ['warn', {
 				allowList: {
+					'arg': true,
+					'arr': true,
 					'err': true,
+					'msg': true,
 					'obj': true,
+					'param': true,
 					'req': true,
 					'res': true,
+					'str': true,
 					'val': true,
-					'msg': true,
-					'param': true,
+					'x': true,
+					'y': true,
 				},
 			}],
 			'unicorn/no-null': ['off'],
 
 			// because of https://github.com/sindresorhus/eslint-plugin-unicorn/issues/1193
 			// I'm going to disable these three rules, since they make
-			// a "not bad" code looks like there is a critical error
+			// the "not bad"-code look like there is a critical error
 			'unicorn/no-array-for-each': ['warn'],
 			'unicorn/no-array-callback-reference': ['off'],
 			'unicorn/no-array-method-this-argument': ['off'],
+			'unicorn/no-array-reduce': ['off'],
+			// ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+			// because it complains about `try{} catch (err) {}`
+			'unicorn/catch-error-name': ['off'],
+
+			// because I used to invert conditions to move a shorter block up
+			'unicorn/no-negated-condition': ['off'],
+
+			// it doesn't make a lot of sense:
+			// `substring` is just as legal as slice
+			'unicorn/prefer-string-slice': ['off'],
+
+			// eslint's defaut "no-lonely-if" is more than enough and this rule
+			'unicorn/no-lonely-if': ['off'],
 
 			// -----------------------------------------------------------------
 			// mocha
 			// -----------------------------------------------------------------
 
 			'mocha/no-mocha-arrows': ['warn'],
+
+			// -----------------------------------------------------------------
+			// TODO: MAYBE THESE TOO:
+			// -----------------------------------------------------------------
+			// '@stylistic/operator-linebreak': ['off'],
+			// '@stylistic/object-property-newline': ['off'],
+			// '@stylistic/multiline-ternary': ['off'],
 		},
 
 		ignores: [

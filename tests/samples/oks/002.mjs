@@ -27,8 +27,11 @@ function showAlert (message) {
 	return message
 }
 
+// no-useless-return
 const anonimousFunction = (ignoreIt) => {
 	debug(ignoreIt)
+	// no-useless-return
+	return
 }
 
 // avoiding unused
@@ -55,5 +58,16 @@ if (null === zebra) {
 	}
 }
 
-// avoiding unused
-debug(zebra)
+// unicorn/no-lonely-if
+if (null !== zebra) {
+	// unicorn/no-lonely-if
+	if (undefined !== zebra) {
+		debug(zebra)
+	}
+}
+
+// unicorn/prefer-string-slice
+showAlert('long message, let us cut it'.substring(0, 4))
+
+const smallBigInt = BigInt('12312312312312312312312312313123123123131313123123')
+debug(smallBigInt + BigInt(1))
