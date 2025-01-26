@@ -60,14 +60,8 @@ export default [
 		name: 'volebo',
 
 		languageOptions: {
-			parserOptions: {
-				ecmaVersion: 14, // 2023,
-				sourceType: 'module',
-			},
-
-			globals: {
-				// 'BigInt': 'readonly',
-			},
+			ecmaVersion: 14, // 2023,
+			sourceType: 'module',
 		},
 
 		rules: {
@@ -246,6 +240,21 @@ export default [
 			'node_modules/*',
 			'tmp/',
 		],
+	},
+
+	{
+		files: [
+			'**/*.cjs',
+		],
+		languageOptions: {
+			sourceType: 'commonjs',
+		},
+		rules: {
+			'strict':        ['error', 'global'],
+
+			// because these files are not modules EXPLICITLY (.cjs)
+			'unicorn/prefer-module': ['off'],
+		},
 	},
 
 	{
