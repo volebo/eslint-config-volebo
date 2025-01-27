@@ -206,24 +206,31 @@ export default [
 			// UNICORN
 			// -----------------------------------------------------------------
 
+			// there is no problem with top-level Promise-chainj
 			'unicorn/prefer-top-level-await': ['off'],
-			// TODO: maybe OFF?
-			'unicorn/prevent-abbreviations': ['warn', {
-				allowList: {
-					'arg': true,
-					'arr': true,
-					'err': true,
-					'msg': true,
-					'obj': true,
-					'param': true,
-					'req': true,
-					'res': true,
-					'str': true,
-					'val': true,
-					'x': true,
-					'y': true,
-				},
-			}],
+
+			// it is annoying that `jsonAsStr` is not a good name
+			// for a local variable
+			'unicorn/prevent-abbreviations': ['off'], // ['warn', {
+			// 	allowList: {
+			// 		'arg': true,
+			// 		'arr': true,
+			// 		'err': true,
+			// 		'msg': true,
+			// 		'obj': true,
+			// 		'param': true,
+			// 		'req': true,
+			// 		'res': true,
+			// 		'str': true,
+			// 		'val': true,
+			// 		'x': true,
+			// 		'y': true,
+			// 	},
+			// }],
+
+			// what? wait, we like to use null
+			// we use DB, and sometimes we need to erase the content of a field
+			// without `null` - it is just weird
 			'unicorn/no-null': ['off'],
 
 			// because of https://github.com/sindresorhus/eslint-plugin-unicorn/issues/1193

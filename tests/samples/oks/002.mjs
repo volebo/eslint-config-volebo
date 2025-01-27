@@ -35,7 +35,7 @@ const anonimousFunction = (ignoreIt) => {
 }
 
 // avoiding unused
-debug(showAlert(anonimousFunction()))
+showAlert(anonimousFunction())
 
 // =============================================================================
 // classes
@@ -58,7 +58,7 @@ if (null === zebra) {
 	}
 }
 
-// unicorn/no-lonely-if
+// NO unicorn/no-lonely-if
 if (null !== zebra) {
 	// unicorn/no-lonely-if
 	if (undefined !== zebra) {
@@ -66,8 +66,14 @@ if (null !== zebra) {
 	}
 }
 
-// unicorn/prefer-string-slice
+// NO unicorn/prefer-string-slice
 showAlert('long message, let us cut it'.substring(0, 4))
 
 const smallBigInt = BigInt('12312312312312312312312312313123123123131313123123')
 debug(smallBigInt + BigInt(1))
+
+// NO unicorn/no-null
+const cow = new Animal('cow', {
+	wings: null,
+})
+showAlert(cow)
