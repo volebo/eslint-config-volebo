@@ -36,25 +36,35 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 >
 --------------------------------------------------------------------------------
 
-## [4.0.0-beta.3] - 2024-10-21
+## [4.0.0](https://gitlab.com/volebo/eslint-config-volebo/compare/release/eslint-config-volebo/v4.0.0-beta.3...release/eslint-config-volebo/v4.0.0) (2025-01-27)
 
-### Added
 
-- 1df9486: add tests for `space-before-function-paren`
-- 7111bfe: add tests for node 16/18/20
+### Features
+
+- **rules:** **base config was inherited from `neostandard` with `unicorn` plugin**
+- **move to ESM**
+- migrate to eslint **flat** configs
+- **rules:** add missing `no-script-url` rule from v3 (not enabled!) ([d6128a6](https://gitlab.com/volebo/eslint-config-volebo/commit/d6128a620511c4e9ffad77a00255c2b968138bfb))
+- **rules:** conf: `strict`, `no-useless-return`, unicorn-rules ([50851a5](https://gitlab.com/volebo/eslint-config-volebo/commit/50851a5d62773f837ca2011054e21de187917417))
+- **rules:** restore all rules from old version (v3) ([6e2af77](https://gitlab.com/volebo/eslint-config-volebo/commit/6e2af77fc6319719844e6b4133535dacff714c39))
 - 3ee9a48: add new rule (explicitly): `no-extra-semi`
 - 787aefa: GL-11, GL-9, GL-13 add new rules:
   - `no-var`
   - `yoda`
   - `comma-style`
   - `no-trailing-spaces`
-
-### Changed
-
 - a6d44a0: adjust rule `key-spacing`
-- 0a13ddd: GL-7 relax rule `mocha/no-mocha-arrows` - it is nice when
-  it is a function, but an arrow is ok as well
-- f6e6bbd: rename and reorganize tests
+- 0a13ddd: GL-7 relax rule `mocha/no-mocha-arrows`
+
+
+### Bug Fixes
+
+- **rules:** disable `prevent-abbreviations` and test for `no-null` ([a530ef8](https://gitlab.com/volebo/eslint-config-volebo/commit/a530ef8075004ad8813794ccfd761ca005a9b908))
+* **rules:** `mocha/no-setup-in-describe` now warns ([353b845](https://gitlab.com/volebo/eslint-config-volebo/commit/353b8455b34f9721f25ab77705a0aa6b7161a834))
+* **rules:** set `eslint.sourceType` and `eslint.ecmaVersion` CORRECTLY in config ([977bb27](https://gitlab.com/volebo/eslint-config-volebo/commit/977bb27425b412c7ab13c15772862f55e76b79a4))
+* **rules:** relax `no-unused-expressions` for test files (with chai-expressions) ([0cc28f1](https://gitlab.com/volebo/eslint-config-volebo/commit/0cc28f168f5ae66089efc8460f9b05c597884a27))
+- 1df9486: add tests for `space-before-function-paren`
+- 7111bfe: add tests for node 16/18/20
 
 ## [4.0.0-beta.3] - 2024-10-21
 
