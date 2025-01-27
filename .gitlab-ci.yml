@@ -21,7 +21,7 @@ cache:
   key:
     files:
       - package.json
-    prefix: npm-packages
+    prefix: node_modules
   paths:
     - node_modules/
 
@@ -42,14 +42,6 @@ test.lint:
     reports:
       codequality: gl-codequality.json
 
-
-test.test.18:
-  stage: test
-  image: node:18
-  script:
-    - npm run test
-
-
 test.test.20:
   stage: test
   image: node:20
@@ -67,7 +59,7 @@ release:
   stage: release
   rules:
     # only for tags `v1.1.xxxxxxx(whatever)`
-    - if: '$CI_COMMIT_TAG =~ /^v\d+\.\d+\./'
+    - if: '$CI_COMMIT_TAG =~ /^release\//'
       when: manual
 
   script:
