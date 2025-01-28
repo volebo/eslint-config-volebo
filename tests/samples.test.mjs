@@ -36,9 +36,9 @@ const VLB_TEST_CONSOLE = '1' === process.env.VLB_TEST_CONSOLE
 const SAMPLES_BASE_PATH = './tests/samples/'
 
 
-function printLintingErrorDetails(eslintRes) {
+function printLintingErrorDetails (eslintRes) {
 	if (VLB_TEST_CONSOLE) {
-		// eslint-disable-next-line: no-console
+		// eslint-disable-next-line no-console
 		console.dir(eslintRes, { depth: 8 })
 	}
 }
