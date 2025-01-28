@@ -36,6 +36,23 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 >
 --------------------------------------------------------------------------------
 
+# [4.1.0](https://gitlab.com/volebo/eslint-config-volebo/compare/release/eslint-config-volebo/v4.0.0...release/eslint-config-volebo/v4.1.0) (2025-01-28)
+
+
+### Bug Fixes
+
+* **deps:** fix leaks caused by neostandard 0.12 ([943869c](https://gitlab.com/volebo/eslint-config-volebo/commit/943869c740ee8cfa0bc2f2cc27cc1b0b66773044))
+* **internals:** remove JSON hack for `structuredClone` ([df743c9](https://gitlab.com/volebo/eslint-config-volebo/commit/df743c98d36660123495f5d1d5afffaad394462d))
+
+
+### Features
+
+* **config:** add names to configuration sections ([0977da4](https://gitlab.com/volebo/eslint-config-volebo/commit/0977da46ae84aed04a8693d8c065ee1548e28b3c))
+* **internals:** generate the default config using a function and export both ([566794b](https://gitlab.com/volebo/eslint-config-volebo/commit/566794b29971a5e7af98e0c65932db815a89afb8))
+* **rules:** add `n/hashbang` rule ([a0d742c](https://gitlab.com/volebo/eslint-config-volebo/commit/a0d742c7980339841d5505e14fee3a090e575f48))
+
+
+
 ## [4.0.0](https://gitlab.com/volebo/eslint-config-volebo/compare/release/eslint-config-volebo/v4.0.0-beta.3...release/eslint-config-volebo/v4.0.0) (2025-01-27)
 
 
