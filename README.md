@@ -24,7 +24,7 @@ Common style guide for all Volebo.Net projects
 ## Install
 
 ```shell
-npm install -D eslint-config-volebo eslint
+npm install --save-dev eslint-config-volebo eslint
 ```
 
 Then create an `eslint.config.js` file in the root of your project:
@@ -39,8 +39,8 @@ export default [
 
 ## SHORT
 
-- preferably ESM
-- `<tab>`
+- preferably ESM (but works good with CJS in `strict` mode)
+- `<tab>` for indentation
 - no semicolons
 
 ### Based on
