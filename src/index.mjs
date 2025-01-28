@@ -26,7 +26,11 @@
 ################################################################################
 */
 
-import neostandard         from 'neostandard'
+import {
+	default as neostandard,
+	plugins,
+}                          from 'neostandard'
+
 import globals             from 'globals'
 
 import pluginMocha         from 'eslint-plugin-mocha'
@@ -37,6 +41,8 @@ import pluginChaiFriendly  from 'eslint-plugin-chai-friendly'
 //                    eslint-plugin-import
 
 
+
+export { resolveIgnoresFromGitignore } from 'neostandard'
 // // FIXME: HACK unless i upgrade locally to node>17  https://stackoverflow.com/a/73695667/1115187
 // if (!globalThis.structuredClone) {
 // 	// eslint-disable-next-line unicorn/prefer-structured-clone
@@ -44,18 +50,27 @@ import pluginChaiFriendly  from 'eslint-plugin-chai-friendly'
 // }
 
 
-export default [
-	...neostandard(),
-	// jsdoc.configs['flat/recommended-typescript-flavor'],
+export function eslintVoleboConfig (options) {
 
-	// pluginMocha.configs.flat.all,   //  to enable all
-	pluginMocha.configs.flat.recommended,
+	// `false` when you have `prettier`
+	const withStyleRules = options?.withStyleRules ?? true
 
-	pluginUnicorn.configs['flat/recommended'],
+	return [
+		...neostandard({
+			// env: ['browser'],
+			// globals: { ...globalInProject },
+			// ignores: [
+			// ...require('neostandard').resolveIgnoresFromGitignore(),
+			// ],
+			noJsx: true,
+			noStyle: !withStyleRules,
+			semi: false,     // no semicolons
+		}),
 
 	// =========================================================================
 	// volebo config:
 	// =========================================================================
+		pluginUnicorn.configs['flat/recommended'],
 	{
 		name: 'volebo',
 
@@ -317,35 +332,48 @@ export default [
 
 		plugins: {
 			'chai-friendly': pluginChaiFriendly,
-		},
+			rules: {
+				// in mocha tests there are a lot of `describe` and `it`
+				// so actual tests are on 4th of 5th or 6th level of nested
+				// callbacks. Thus: relaxing the rule:
+				'max-nested-callbacks': ['warn', { 'max': 8 }],
 
-		rules: {
-			// in mocha tests there are a lot of `describe` and `it`
-			// so actual tests are on 4th of 5th or 6th level of nested
-			// callbacks. Thus: relaxing the rule:
-			'max-nested-callbacks': ['warn', { 'max': 8 }],
+				// -----------------------------------------------------------------
+				// mocha
+				// -----------------------------------------------------------------
 
-			// there is a problem with this rule: we generate the "top level"
-			// test name (in `describe`) using filename. I _could_ consider
-			// breaking the top level decribe call into two lines:
-			// - get name
-			// - call describe
-			// but ATM it is easier for me to disable this rule completely
-			'mocha/no-setup-in-describe': ['warn'],
+				'mocha/no-mocha-arrows': ['warn'],
 
-			// chaiJS has expressions like:
-			//
-			// 		expect(act).is.null
-			//
-			// but original eslint's 'no-unused-expressions' raise an error.
-			// in order to keep the rule working, but with chai-expressions
-			// this plugin is added:
-			'no-unused-expressions': ['off'],
-			'chai-friendly/no-unused-expressions': ['error', {
-				allowShortCircuit: true,
-				allowTernary: true,
-				allowTaggedTemplates: true,
-			}],
+				// there is a problem with this rule: we generate the "top level"
+				// test name (in `describe`) using filename. I _could_ consider
+				// breaking the top level decribe call into two lines:
+				// - get name
+				// - call describe
+				// but ATM it is easier for me to disable this rule completely
+				//
+				// another reason: we use dynamically generated tests:
+				// https://mochajs.org/#dynamically-generating-tests
+				// TODO: consider turning on , or looking for an alternative
+				'mocha/no-setup-in-describe': ['off'],
+
+				// chaiJS has expressions like:
+				//
+				// 		expect(act).is.null
+				//
+				// but original eslint's 'no-unused-expressions' raise an error.
+				// in order to keep the rule working, but with chai-expressions
+				// this plugin is added:
+				'no-unused-expressions': ['off'],
+				'chai-friendly/no-unused-expressions': ['error', {
+					allowShortCircuit: true,
+					allowTernary: true,
+					allowTaggedTemplates: true,
+				}],
+			},
 		},
 	},
-]
+	]
+}
+
+const defaultConfig = eslintVoleboConfig()
+export default defaultConfig
