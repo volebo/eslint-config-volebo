@@ -81,3 +81,13 @@ showAlert(cow)
 // NO no-shadow when a variable is not yet initialized
 const noShadow = (noShadow => noShadow)()
 showAlert(noShadow)
+
+
+// whitespace
+const menu = [
+	{ text:           'API: Graph(i)QL',                 href: '/ui/graphiql' },
+	{ textCollection: 'Long page name 12',               href: '/api/v1/oauth2' },
+	{ textHtml:       'HTML: <code>booooooo</code>',     uri:  '/static/files-get.html' },
+]
+
+showAlert(menu)

@@ -1,4 +1,4 @@
-import Debug          from 'debug'
+import Debug		from 'debug'
 const debug = new Debug('volebolint:sample:01')
 
 

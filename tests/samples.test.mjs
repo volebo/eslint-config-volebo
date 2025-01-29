@@ -53,6 +53,7 @@ function _listTestFilesSync (testDirectory) {
 }
 
 function _getTestFileInfo (partialPath) {
+
 	const _m = partialPath.match(/([-\w\d]+)\.(\d+)(?:\.(\d+))?/i)
 	const partialRuleName = _m?.[1]
 	const expNumber1 = _m?.[2]

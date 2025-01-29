@@ -220,20 +220,33 @@ export function eslintVoleboConfig (options) {
 
 				'@stylistic/padded-blocks': ['off'],
 				'@stylistic/key-spacing': ['error', {
-					beforeColon: false,
-					afterColon: true,
-					mode: 'minimum',
+					singleLine: {
+						beforeColon: false,
+						afterColon: true,
+						mode: 'minimum',
+					},
+					multiLine: {
+						beforeColon: false,
+						afterColon: true,
+						mode: 'minimum',
+					},
 
 					// mk @ 2024-10-20: it doesn't allow to write "objects" without aligning (and I do it a lot)
 					// align: {beforeColon: false, afterColon: true, mode: 'minimum', on: 'value', },
 				}],
 				'@stylistic/no-multi-spaces': ['warn', {
 					ignoreEOLComments: true,
+					includeTabs: true,
 					exceptions: {
 						// I like to align "import" declarations
 						ImportDeclaration: true,
 						ExportAllDeclaration: true,
 						ExportNamedDeclaration: true,
+						Identifier: true,
+
+						// for object expressions there is `key-spacing`
+						Property: true,
+						ObjectExpression: true,
 					},
 				}],
 				'@stylistic/no-multiple-empty-lines': ['error', {
@@ -243,6 +256,7 @@ export function eslintVoleboConfig (options) {
 				}],
 				'@stylistic/no-trailing-spaces': ['error'],
 
+				'@stylistic/no-mixed-spaces-and-tabs': ['error'],
 				'@stylistic/no-tabs': ['off', { allowIndentationTabs: true }],
 				'@stylistic/quote-props': ['error', 'consistent', { 'keywords': true }],
 				'@stylistic/semi': ['error', 'never'],
