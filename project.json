@@ -1,5 +1,5 @@
 {
-	// "root": "eslint-config-volebo",
+	"name": "eslint-config-volebo",
 	"sourceRoot": "{projectRoot}/src",
 	"targets": {
 		"lint": {},

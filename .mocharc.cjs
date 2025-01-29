@@ -54,6 +54,10 @@ module.exports = {
 	// slow: 75,
 	timeout: MOCHA_TIMEOUT_DEFAULT,
 
+	ignore: [
+		'tests/samples/**'
+	],
+
 	spec: [
 		'tests/**/*.test.?js',
 		'tests/**/*.spec.?js',

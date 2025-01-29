@@ -395,11 +395,15 @@ export function eslintVoleboConfig (options) {
 					allowTernary: true,
 					allowTaggedTemplates: true,
 				}],
+
+				// TODO: enable it when mocha-plugin will be able to support construcitons `tags().describe('', fn() { before...`
+				// #bugRuleMochaTopLevelHooks GL-17
+				'mocha/no-top-level-hooks': ['off'],
 			},
 			settings: {
 				'mocha/additionalCustomNames': [
-					{ name: 'tags', type: 'suite',    interfaces: ['BDD'] },
-					{ name: 'tags', type: 'testCase', interfaces: ['TDD'] },
+					{ name: 'tags()', type: 'suite',    interfaces: ['BDD', 'TDD', 'exports'] },
+					{ name: 'tags()', type: 'testCase', interfaces: ['BDD', 'TDD', 'exports'] },
 				],
 			},
 		},
