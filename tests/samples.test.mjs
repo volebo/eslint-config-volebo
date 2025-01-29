@@ -27,8 +27,10 @@
 */
 
 
+import assert       from 'node:assert'
 import fs           from 'node:fs'
 import path         from 'node:path'
+
 import { ESLint }   from 'eslint'
 
 
@@ -50,6 +52,25 @@ function _listTestFilesSync (testDirectory) {
 		.map(fileInfo => path.join(testDirectory, fileInfo.name))
 }
 
+function _getTestFileInfo (partialPath) {
+	const _m = partialPath.match(/([-\w\d]+)\.(\d+)(?:\.(\d+))?/i)
+	const partialRuleName = _m?.[1]
+	const expNumber1 = _m?.[2]
+		? Number(_m?.[2])
+		: undefined
+	const expNumber2 = _m?.[3]
+		? Number(_m?.[3])
+		: undefined
+
+	assert.equal(typeof expNumber1, 'number', `file name '${partialPath}' has wrong format`)
+	assert      (0 < expNumber1             , `file name '${partialPath}' has wrong format`)
+
+	return {
+		expNumber1,
+		expNumber2,
+		partialRuleName,
+	}
+}
 
 // takes eslint output and generates a string to annotate failing tests
 function _convertLintOutputToString (oneEslintResult) {
@@ -207,13 +228,12 @@ describe('eslint-config-volebo', function () {
 
 			it(`should error [${name}]`, function () {
 
-				const _m = name.match(/([-\w\d]+)\.(\d+)/i)
 
-				const ruleName = _m?.[1]
-				const errCount = Number(_m?.[2])
-				expect(errCount)
-					.is.a('number')
-					.greaterThan(0, 'file name has wrong format')
+				const {
+					expNumber1: expErrCount,
+					expNumber2: expOtherErrCount,
+					partialRuleName,
+				} = _getTestFileInfo(name)
 
 				return lintAsync(path.join(SAMPLES_BASE_PATH, name))
 					.then(res => {
@@ -227,15 +247,24 @@ describe('eslint-config-volebo', function () {
 
 						printLintingErrorDetails(res0)
 
-						expect(res0).has.property('errorCount',   errCount,       msgs)
+						expect(res0).has.property('errorCount',   expErrCount + (expOtherErrCount ?? 0),    msgs)
 						expect(res0).has.property('warningCount', unicornAbbrevs, msgs)
 
+						const ruleNameRe = new RegExp('(^|/)' + partialRuleName + '$', 'i')
+						let effErr = 0
+						let effErrOther = 0
 						for (const msg of res0?.messages) {
 							if ('unicorn/prevent-abbreviations' === msg.ruleId) {
 								continue
 							}
-							expect(msg.ruleId).matches(new RegExp('(^|/)' + ruleName + '$'))
+							if (ruleNameRe.test(msg.ruleId)) {
+								effErr += 1
+							} else {
+								effErrOther += 1
+							}
 						}
+						expect(effErr).eql(expErrCount, `wrong number of [${partialRuleName}] errors`)
+						expect(effErrOther).eql(expOtherErrCount ?? 0, `wrong number of [other] errors`)
 					})
 			})
 		}

@@ -179,6 +179,11 @@ export function eslintVoleboConfig (options) {
 				'no-global-assign': ['error'],
 				'no-extend-native': ['error'],
 
+				'no-shadow':     ['error', {
+					builtinGlobals: true,
+					hoist: 'all',
+					ignoreOnInitialization: true,
+				}],
 				'no-bitwise':    ['error'],
 				'guard-for-in':  ['error'],
 				'no-console':    ['error'],  // use `debug` or other packages, or add explicit "eslint-ignore" for lines with console.xxx

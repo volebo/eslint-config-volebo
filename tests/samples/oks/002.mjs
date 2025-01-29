@@ -77,3 +77,7 @@ const cow = new Animal('cow', {
 	wings: null,
 })
 showAlert(cow)
+
+// NO no-shadow when a variable is not yet initialized
+const noShadow = (noShadow => noShadow)()
+showAlert(noShadow)
