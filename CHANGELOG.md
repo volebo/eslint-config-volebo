@@ -36,6 +36,21 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 >
 --------------------------------------------------------------------------------
 
+# [4.2.0](https://gitlab.com/volebo/eslint-config-volebo/compare/release/eslint-config-volebo/v4.1.0...release/eslint-config-volebo/v4.2.0) (2025-01-29)
+
+
+### Bug Fixes
+
+* **rules:** disable `mocha/no-top-level-hooks` and add Mocha sample `x.spec.mjs` ([b7b228c](https://gitlab.com/volebo/eslint-config-volebo/commit/b7b228cc48b2a13a7f41a725ee8db1fc139001f4))
+* **rules:** GL-18 adjusting spaces/tabs for indentation/alignment (another attempt) ([0b1b617](https://gitlab.com/volebo/eslint-config-volebo/commit/0b1b617d3e6e8198cc3f36a03efb2308da188eae))
+
+
+### Features
+
+* **rules:** GL-10 add rule `no-shadow` and its dull copy `no-shadow-restricted-names` ([f224c62](https://gitlab.com/volebo/eslint-config-volebo/commit/f224c622ae53e3e5d7eeb1e4bb37b03097779e65))
+
+
+
 # [4.1.0](https://gitlab.com/volebo/eslint-config-volebo/compare/release/eslint-config-volebo/v4.0.0...release/eslint-config-volebo/v4.1.0) (2025-01-28)
 
 
