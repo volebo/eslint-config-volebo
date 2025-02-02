@@ -15,6 +15,8 @@ stages:
   - test
   - release
 
+variables:
+  SAST_EXCLUDED_PATHS: "tools, tests, tmp"
 
 # http://docs.gitlab.com/ce/ci/yaml/README.html#cache
 cache:
@@ -27,7 +29,7 @@ cache:
 
 # ------------------------------------------------------------------------------
 
-before_script:
+.z-job-script--versions: &z-job-script--versions
   - node --version
   - npm --version
   - npm install --quiet
@@ -36,6 +38,8 @@ before_script:
 test.lint:
   stage: test
   script:
+    - *z-job-script--versions
+
     - npm install eslint-formatter-gitlab
     - npm run lint -- --format gitlab
   artifacts:
@@ -46,11 +50,15 @@ test.test.20:
   stage: test
   image: node:20
   script:
+    - *z-job-script--versions
+
     - npm run test
 
 test.coverage:
   stage: test
   script:
+    - *z-job-script--versions
+
     - npm run coverage
 
   coverage: '/Statements\s*:\s*([\d.%]+).*$/'
@@ -67,7 +75,11 @@ release:
       aud: sigstore
 
   script:
+    - *z-job-script--versions
+
     - echo "//registry.npmjs.org/:_authToken=${VLB_CI_NPM_TOKEN}" > ~/.npmrc
     - npm whoami
     - npm publish --provenance
 
+include:
+  - template: Jobs/SAST.gitlab-ci.yml
