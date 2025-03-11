@@ -10,8 +10,8 @@
 #                                                                              #
 ################################################################################
 #
-# Copyright (C) 2016-2024 Volebo <dev@volebo.net>
-# Copyright (C) 2016-2024 Maksim Koryukov <maxkoryukov@volebo.net>
+# Copyright (C) 2016-2025 Volebo <dev@volebo.net>
+# Copyright (C) 2016-2025 Maksim Koryukov <maxkoryukov@volebo.net>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the MIT License, attached to this software package.
@@ -26,45 +26,20 @@
 ################################################################################
 */
 
-'use strict'
+
+import * as mod from './index.mjs'
 
 
-const MOCHA_TIMEOUT_DEFAULT = Number(process.env.MOCHA_TIMEOUT_DEFAULT ?? 2000)
-const MOCHA_RETRIES = Number(process.env.MOCHA_RETRIES ?? 0)
+describe('src/index.test.mjs', function () {
 
+	it('should export default config', function () {
+		expect(mod.default).is.a('array').lengthOf.greaterThan(1)
 
-module.exports = {
-	reporter: 'list',
-	// reporter: 'spec',
+		expect(mod.default[0]).has.property('name', 'neostandard/base')
+	})
 
-	recursive: true,
-	checkLeaks: true,
-	ui: 'bdd',
-	require: 'tests/bootstrap.mjs',
-	extension: [
-		'test.js',
-		'test.cjs',
-		'test.mjs',
-		'spec.js',
-		'spec.cjs',
-		'spec.mjs',
-	],
-	retries: MOCHA_RETRIES,
+	it('should export eslintConfigVolebo', function () {
+		expect(mod.eslintConfigVolebo).is.a('function')
+	})
 
-	diff: true,
-	package: './package.json',
-	// slow: 75,
-	timeout: MOCHA_TIMEOUT_DEFAULT,
-
-	ignore: [
-		'tests/samples/**',
-	],
-
-	spec: [
-		'tests/**/*.test.?js',
-		'tests/**/*.spec.?js',
-
-		'src/**/*.test.*js',
-		'src/**/*.spec.*js',
-	],
-}
+})

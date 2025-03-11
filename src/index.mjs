@@ -61,15 +61,16 @@ export { resolveIgnoresFromGitignore } from 'neostandard'
 // }
 
 
-export function eslintVoleboConfig (options) {
+export function eslintConfigVolebo (options) {
 
 	// `false` when you have `prettier`
 	const withStyleRules = options?.withStyleRules ?? true
 
 	return [
 		...neostandard({
-			// env: ['browser'],
-			// globals: { ...globalInProject },
+			env: options?.env,
+			globals: options?.globals,
+			ts: options?.ts,
 			// ignores: [
 			// ...require('neostandard').resolveIgnoresFromGitignore(),
 			// ],
@@ -432,5 +433,5 @@ export function eslintVoleboConfig (options) {
 	]
 }
 
-const defaultConfig = eslintVoleboConfig()
+const defaultConfig = eslintConfigVolebo()
 export default defaultConfig

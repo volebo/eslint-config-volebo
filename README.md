@@ -37,6 +37,24 @@ export default [
 ]
 ```
 
+Or providing more settings (most of them inherited from [neostandard](https://github.com/neostandard/neostandard?tab=readme-ov-file#configuration-options))
+
+```javascript
+import { eslintConfigVolebo } from 'eslint-config-volebo'
+import jsdoc from 'eslint-plugin-jsdoc'
+
+export default [
+	...eslintConfigVolebo({
+		// options
+		globals: {
+			'MyClass': 'readonly',
+		},
+	}),
+	// other configs:
+	jsdoc.configs['flat/recommended-typescript-flavor'],
+]
+```
+
 ## SHORT
 
 - preferably ESM (but works good with CJS in `strict` mode)
