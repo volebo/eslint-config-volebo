@@ -30,7 +30,7 @@
 import { ESLint }   from 'eslint'
 
 
-const eslint = new ESLint({ 'ignore': false,  })
+const eslint = new ESLint({ 'ignore': false })
 
 
 // mostly taken from ESLint examples:
@@ -61,7 +61,7 @@ describe.skip('[bigint not implemented] eslint-config-volebo', function () {
 				'const x = BigInt(1)',
 				'const y = x + 1',
 				'(function (arg) { return arg })(y)',
-				''
+				'',
 			].join('\n')
 
 			return lintAsync(_c)

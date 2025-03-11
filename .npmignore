@@ -32,13 +32,18 @@
 
 /tools/
 OLD.*
-project.json
+
+/dist                # !!! DIFFERS FROM .gitignore, required for NPM !!!
+#/src                # !!! DIFFERS FROM .gitignore, required for NPM !!!
 
 # =========================================
 # common part
 # =========================================
 *.sublime-project
 *.sublime-workspace
+
+# nx files
+project.json
 
 # PRIVATE files
 .env
@@ -50,8 +55,6 @@ project.json
 /node_modules
 /bower_components
 
-/dist                # !!! DIFFERS FROM .gitignore, required for NPM !!!
-#/src                # !!! DIFFERS FROM .gitignore, required for NPM !!!
 # compiled output
 /tmp
 /build

@@ -64,7 +64,7 @@ function _getTestFileInfo (partialPath) {
 		: undefined
 
 	assert.equal(typeof expNumber1, 'number', `file name '${partialPath}' has wrong format`)
-	assert      (0 < expNumber1             , `file name '${partialPath}' has wrong format`)
+	assert.ok   (0 < expNumber1,              `file name '${partialPath}' has wrong format`)
 
 	return {
 		expNumber1,

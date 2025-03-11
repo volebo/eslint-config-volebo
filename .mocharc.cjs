@@ -26,9 +26,11 @@
 ################################################################################
 */
 
+'use strict'
 
-const MOCHA_TIMEOUT_DEFAULT = Number(process.env.MOCHA_TIMEOUT_DEFAULT || 2000)
-const MOCHA_RETRIES = Number(process.env.MOCHA_RETRIES || 0)
+
+const MOCHA_TIMEOUT_DEFAULT = Number(process.env.MOCHA_TIMEOUT_DEFAULT ?? 2000)
+const MOCHA_RETRIES = Number(process.env.MOCHA_RETRIES ?? 0)
 
 
 module.exports = {
@@ -55,7 +57,7 @@ module.exports = {
 	timeout: MOCHA_TIMEOUT_DEFAULT,
 
 	ignore: [
-		'tests/samples/**'
+		'tests/samples/**',
 	],
 
 	spec: [
