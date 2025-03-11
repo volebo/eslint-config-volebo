@@ -1,3 +1,7 @@
+import assert         from 'node:assert'
+
+// crypto is global since Node16 (Added in: v17.6.0, v16.15.0)
+import crypto1        from 'node:crypto'
 import Debug          from 'debug'
 
 const debug = new Debug('volebolint:sample:01')
@@ -41,7 +45,6 @@ showAlert(anonimousFunction())
 // classes
 // =============================================================================
 
-
 class Animal {
 	#name
 
@@ -51,6 +54,7 @@ class Animal {
 }
 
 const zebra = new Animal('zebra')
+assert.ok(zebra)
 
 if (null === zebra) {
 	for (const x of ['a', 'b']) {
@@ -105,3 +109,12 @@ location = process.env.F1
 	? 'localhost'
 	: 'www.api.com'
 debug(location)
+
+debug(crypto1.constants)
+
+
+// no-implicit-coercion
+const boolVar = Boolean(location)
+const numVar = Number(boolVar)
+const strVar = String(numVar)
+assert.ok(strVar)

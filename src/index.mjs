@@ -187,7 +187,10 @@ export function eslintConfigVolebo (options) {
 
 				// there must be a reason for bitwise operators in JS,
 				// although - it is still appropriate way of writing JS (innit?)
-				'no-bitwise':    ['warn'],
+				'no-bitwise': ['warn'],
+				'no-implicit-coercion': ['warn', {
+					disallowTemplateShorthand: true,
+				}],
 
 				'guard-for-in':  ['error'],
 				'no-console':    ['error'],  // use `debug` or other packages, or add explicit "eslint-ignore" for lines with console.xxx
