@@ -183,7 +183,11 @@ export function eslintVoleboConfig (options) {
 					hoist: 'all',
 					ignoreOnInitialization: true,
 				}],
-				'no-bitwise':    ['error'],
+
+				// there must be a reason for bitwise operators in JS,
+				// although - it is still appropriate way of writing JS (innit?)
+				'no-bitwise':    ['warn'],
+
 				'guard-for-in':  ['error'],
 				'no-console':    ['error'],  // use `debug` or other packages, or add explicit "eslint-ignore" for lines with console.xxx
 				// TODO: move 'no-alert' to the "browser.mjs"
