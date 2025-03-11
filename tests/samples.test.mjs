@@ -106,7 +106,7 @@ function lintAsync (filePattern) {
 }
 
 
-describe('eslint-config-volebo', function () {
+describe('samples.test.mjs', function () {
 
 
 	describe('linting GOOD files', function () {
@@ -271,4 +271,26 @@ describe('eslint-config-volebo', function () {
 		}
 	})
 
+	// =========================================================================
+
+	// TODO: find a package for BigInt validations
+	xdescribe('[TODO: find a package!!] BigInt assertions', function () {
+
+		const _sample001 = 'bigint.001.mjs'
+
+		it(`should fail on arithmetic operations without explicit conversion [${_sample001}]`, function () {
+
+			return lintAsync(path.join(SAMPLES_BASE_PATH, _sample001))
+				.then(res => {
+					expect(res).is.an('array').lengthOf(1)
+
+					// join eslint messages for debugging
+					const res0 = res[0]
+
+					expect(res0).has.property('messages').eql([])
+					expect(res0).has.property('errorCount', 0)
+					expect(res0).has.property('warningCount', 0)
+				})
+		})
+	})
 })
