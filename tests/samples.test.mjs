@@ -265,7 +265,7 @@ describe('eslint-config-volebo', function () {
 							}
 						}
 						expect(effErr).eql(expErrCount, `wrong number of [${partialRuleName}] errors`)
-						expect(effErrOther).eql(expOtherErrCount ?? 0, `wrong number of [other] errors`)
+						expect(effErrOther).eql(expOtherErrCount ?? 0, 'wrong number of [other] errors')
 					})
 			})
 		}

@@ -98,7 +98,6 @@ export function eslintVoleboConfig (options) {
 			},
 
 			rules: {
-
 				// -----------------------------------------------------------------
 				// complexity and line numbers:
 				// -----------------------------------------------------------------
@@ -317,9 +316,9 @@ export function eslintVoleboConfig (options) {
 				// -----------------------------------------------------------------
 				// TODO: MAYBE THESE TOO:
 				// -----------------------------------------------------------------
-				// '@stylistic/operator-linebreak': ['off'],
 				// '@stylistic/object-property-newline': ['off'],
-				// '@stylistic/multiline-ternary': ['off'],
+				// unicorn/prefer-string-raw
+				// unicorn/explicit-length-check
 			},
 
 			ignores: [

@@ -91,3 +91,17 @@ const menu = [
 ]
 
 showAlert(menu)
+
+
+// =============================================================================
+// other
+// =============================================================================
+
+// TERNARY (multiline-ternary and operator-linebreak)
+// ✓ ok
+let location = process.env.F1 ? 'localhost' : 'www.api.com'
+// ✓ ok
+location = process.env.F1
+	? 'localhost'
+	: 'www.api.com'
+debug(location)
