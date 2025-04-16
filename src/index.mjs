@@ -36,6 +36,8 @@ import globals             from 'globals'
 import pluginMocha         from 'eslint-plugin-mocha'
 import pluginUnicorn       from 'eslint-plugin-unicorn'
 import pluginChaiFriendly  from 'eslint-plugin-chai-friendly'
+import pluginBoundaries    from 'eslint-plugin-boundaries'
+
 
 // import jsdoc from 'eslint-plugin-jsdoc'
 //                    eslint-plugin-import
@@ -46,6 +48,10 @@ const vlbPlugins = {
 
 	get unicorn () {
 		return pluginUnicorn
+	},
+
+	get boundaries () {
+		return pluginBoundaries
 	},
 }
 
@@ -99,7 +105,13 @@ export function eslintConfigVolebo (options) {
 				sourceType: 'module',
 			},
 
+			plugins: {
+				boundaries: pluginBoundaries,
+			},
+
 			rules: {
+				...pluginBoundaries.configs.recommended.rules,
+
 				// -----------------------------------------------------------------
 				// complexity and line numbers:
 				// -----------------------------------------------------------------
