@@ -17,7 +17,7 @@
 [![Build Status](https://gitlab.com/volebo/eslint-config-volebo/badges/master/pipeline.svg?ignore_skipped=true)](https://gitlab.com/volebo/eslint-config-volebo)
 [![npm downloads](https://img.shields.io/npm/dm/eslint-config-volebo.svg)](https://www.npmjs.com/package/eslint-config-volebo)
 [![Known Vulnerabilities](https://snyk.io/test/gitlab/volebo/eslint-config-volebo/badge.svg)](https://snyk.io/test/gitlab/volebo/eslint-config-volebo)
-
+[![Package Quality](https://packagequality.com/shield/eslint-config-volebo.svg)](https://packagequality.com/#?package=eslint-config-volebo)
 
 Common style guide for all Volebo.Net projects
 
