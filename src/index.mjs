@@ -315,7 +315,7 @@ export function eslintConfigVolebo (options) {
 				// because of https://github.com/sindresorhus/eslint-plugin-unicorn/issues/1193
 				// I'm going to disable these three rules, since they make
 				// the "not bad"-code look like there is a critical error
-				'unicorn/no-array-for-each': ['warn'],
+				'unicorn/no-array-for-each': ['off'],
 				'unicorn/no-array-callback-reference': ['off'],
 				'unicorn/no-array-method-this-argument': ['off'],
 				'unicorn/no-array-reduce': ['off'],
