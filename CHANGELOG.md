@@ -13,7 +13,7 @@
 ################################################################################
 ```
 
-All notable changes to this project will be documented in this file. 
+All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
 
@@ -35,6 +35,22 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 > ### Removed
 >
 --------------------------------------------------------------------------------
+
+## [4.3.0](https://gitlab.com/volebo/eslint-config-volebo/compare/release/eslint-config-volebo/v4.2.0...release/eslint-config-volebo/v4.3.0) (2025-04-19)
+
+
+### Features
+
+* **pkg:** export `eslintConfigVolebo` for providing options (to neostandard mostly) ([d3524ca](https://gitlab.com/volebo/eslint-config-volebo/commit/d3524ca4dca5038056923e07c2d21192f4b3332b))
+* **plugins:** add eslint-plugin-boundaries with recommended rules ([9181989](https://gitlab.com/volebo/eslint-config-volebo/commit/9181989358d05b76cd4701c88cee58f65ac3e002))
+* **rules:** add `no-implicit-coercion` rule (warn) ([2da61fb](https://gitlab.com/volebo/eslint-config-volebo/commit/2da61fba36abb41d952b1b2ab80c819337dcd16a))
+* **rules:** upgrade language ecmaVersion to 2025 ([c4b7686](https://gitlab.com/volebo/eslint-config-volebo/commit/c4b76865d1464a17acb0cb52b23de2f49fa59054))
+
+
+### Bug Fixes
+
+* **rules:** disable `unicorn/no-array-for-each` ([ee5c1da](https://gitlab.com/volebo/eslint-config-volebo/commit/ee5c1daf831b2532580e9ca0383464d732879a13))
+* **rules:** relax `no-bitwise` rule (now it is a warning) ([3e697a0](https://gitlab.com/volebo/eslint-config-volebo/commit/3e697a0861355a8570f7f121eecdf654b3644009))
 
 # [4.2.0](https://gitlab.com/volebo/eslint-config-volebo/compare/release/eslint-config-volebo/v4.1.0...release/eslint-config-volebo/v4.2.0) (2025-01-29)
 
