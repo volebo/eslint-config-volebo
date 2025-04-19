@@ -10,8 +10,8 @@
 #                                                                              #
 ################################################################################
 #
-# Copyright (C) 2016-2024 Volebo <dev@volebo.net>
-# Copyright (C) 2016-2024 Maksim Koryukov <maxkoryukov@volebo.net>
+# Copyright (C) 2016 Volebo <dev@volebo.net>
+# Copyright (C) 2016 Maksim Koryukov <maxkoryukov@volebo.net>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the MIT License, attached to this software package.
@@ -28,7 +28,8 @@
 ################################################################################
 */
 
-// eslint-disable-next-line unicorn/prefer-module
+'use strict'
+
 module.exports = {
 	'all': true,
 
