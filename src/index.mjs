@@ -60,13 +60,6 @@ export { vlbPlugins as plugins }
 
 export { resolveIgnoresFromGitignore } from 'neostandard'
 
-// // FIXME: HACK unless i upgrade locally to node>17  https://stackoverflow.com/a/73695667/1115187
-// if (!globalThis.structuredClone) {
-// 	// eslint-disable-next-line unicorn/prefer-structured-clone
-// 	globalThis.structuredClone = (value) => JSON.parse(JSON.stringify(value))
-// }
-
-
 export function eslintConfigVolebo (options) {
 
 	// `false` when you have `prettier`
