@@ -40,7 +40,7 @@ indent_style = tab
 indent_size = 4
 
 # No TABS in YAML. Use 2 spaces
-[*.{yml, yaml}]
+[*.{yml,yaml}]
 indent_style = space
 indent_size = 2
 
