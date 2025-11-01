@@ -56,6 +56,11 @@ class Animal {
 const zebra = new Animal('zebra')
 assert.ok(zebra)
 
+const zebraCopy = null === zebra
+	? undefined
+	: zebra
+debug(zebraCopy, 'is testing @stylistic/operator-linebreak rule')
+
 if (null === zebra) {
 	for (const x of ['a', 'b']) {
 		debug(x)

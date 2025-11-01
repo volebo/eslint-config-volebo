@@ -220,6 +220,7 @@ export function eslintConfigVolebo (options) {
 				// @stylistic
 				// -----------------------------------------------------------------
 
+				'@stylistic/operator-linebreak': ['error', 'before'],
 				'@stylistic/no-extra-parens': ['warn', 'all', { 'nestedBinaryExpressions': false }],
 				'@stylistic/comma-dangle': ['error', 'always-multiline'],
 				'@stylistic/comma-style': ['warn', 'last'],
