@@ -265,7 +265,7 @@ export function eslintConfigVolebo (options) {
 				}],
 				'@stylistic/no-multiple-empty-lines': ['error', {
 					max: 2,
-					maxBOF: 1,
+					maxBOF: 0,
 					maxEOF: 1,
 				}],
 				'@stylistic/no-trailing-spaces': ['error'],
