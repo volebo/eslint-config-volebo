@@ -69,6 +69,8 @@ node_modules/
 npm-cache/
 
 # frameworks
+.nx/cache/
+.nx/workspace-data/
 .serverless/
 .ionic/
 .sass-cache/

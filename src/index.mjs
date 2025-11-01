@@ -278,6 +278,9 @@ export function eslintConfigVolebo (options) {
 				// UNICORN
 				// -----------------------------------------------------------------
 
+				// BUG: GL#19: yoda style is not supported by this good rule
+				'unicorn/explicit-length-check': ['off'],
+
 				// there is no problem with top-level Promise-chainj
 				'unicorn/prefer-top-level-await': ['off'],
 
