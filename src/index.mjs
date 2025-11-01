@@ -384,8 +384,10 @@ export function eslintConfigVolebo (options) {
 					...globals.mocha,
 					...globals.chai,
 
+					'fn2sn': true,
 					'filename2suitename': true,
 					'filename2suitenameEsm': true,
+					'filename2suitenameCjs': true,
 					'tags': true,
 				},
 			},

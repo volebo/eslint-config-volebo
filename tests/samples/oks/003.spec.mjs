@@ -9,7 +9,7 @@ import * as moduleForTests from './my-beautiful-library.mjs'
 tags(
 	'slow',
 	'ui',
-).describe('__filename', function () {
+).describe(fn2sn(import.meta), function () {
 
 	let sbox1
 
