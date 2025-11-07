@@ -104,6 +104,15 @@ export function eslintConfigVolebo (options) {
 			rules: {
 				...pluginBoundaries.configs.recommended.rules,
 
+
+				// TODO: #objectConstructor - should be implemented as extended `no-object-constructor` rule
+				'no-restricted-syntax': ['error',
+					{
+						selector: 'NewExpression[callee.name="Object"][arguments.length>0]',
+						message: 'Function expressions are not allowed.',
+					},
+				],
+
 				// -----------------------------------------------------------------
 				// complexity and line numbers:
 				// -----------------------------------------------------------------
