@@ -290,7 +290,11 @@ export function eslintConfigVolebo (options) {
 				// UNICORN
 				// -----------------------------------------------------------------
 
-				// BUG: GL#19: yoda style is not supported by this good rule
+				// need to consider it again
+				// but we use `Number` or `Boolean`, so let's allow `BigInt`:
+				'unicorn/prefer-bigint-literals': ['off'],
+
+				// // BUG: GL#19: yoda style is not supported by this rule
 				'unicorn/explicit-length-check': ['off'],
 
 				// there is no problem with top-level Promise-chainj
