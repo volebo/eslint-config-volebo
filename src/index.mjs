@@ -190,6 +190,11 @@ export function eslintConfigVolebo (options) {
 					ignoreOnInitialization: true,
 				}],
 
+				// IT must not be an error, but!
+				// because of different behaviour for one arg VS many args -
+				// this make such code error prone!
+				'no-array-constructor': ['error'],
+
 				// there must be a reason for bitwise operators in JS,
 				// although - it is still appropriate way of writing JS (innit?)
 				'no-bitwise': ['warn'],
@@ -315,6 +320,13 @@ export function eslintConfigVolebo (options) {
 				'unicorn/no-array-reduce': ['off'],
 				// ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+
+				// we completely rely on `no-array-constructor` rule
+				// and there is nothing bad in calling `new Array(5)` for creating
+				// an array of 5 items, it looks better (just an opinion)
+				// than Array.from({ length: 5 })
+				'unicorn/no-new-array': ['off'],
+
 				// because it complains about `try{} catch (err) {}`
 				'unicorn/catch-error-name': ['off'],
 
@@ -332,8 +344,8 @@ export function eslintConfigVolebo (options) {
 				// TODO: MAYBE THESE TOO:
 				// -----------------------------------------------------------------
 				// '@stylistic/object-property-newline': ['off'],
+
 				// unicorn/prefer-string-raw
-				// unicorn/explicit-length-check
 			},
 
 			ignores: [
