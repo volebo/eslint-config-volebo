@@ -1,7 +1,8 @@
+import { x as NaN } from './my-nan.mjs'
+
 import Debug from 'debug'
 const debug = new Debug('x')
 
-import { x as NaN } from './my-nan.mjs'
 
 function Infinity (isPositive) {
 	return isPositive

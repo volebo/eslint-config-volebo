@@ -12,8 +12,8 @@ const anonymousFunction = function() {
 }
 
 class Foo {
-	constructor() {
-		this.flag = false
+	constructor({ customFlag }) {
+		this.flag = customFlag
 	}
 }
 
