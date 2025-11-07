@@ -26,17 +26,12 @@
 ################################################################################
 */
 
-import {
-	default as neostandard,
-	plugins,
-}                          from 'neostandard'
-
-import globals             from 'globals'
-
-import pluginMocha         from 'eslint-plugin-mocha'
+import neostandard         from 'neostandard'
 import pluginUnicorn       from 'eslint-plugin-unicorn'
-import pluginChaiFriendly  from 'eslint-plugin-chai-friendly'
 import pluginBoundaries    from 'eslint-plugin-boundaries'
+
+import * as partsMocha     from './parts/mocha.mjs'
+import * as partsBrowser   from './parts/browser.mjs'
 
 
 // import jsdoc from 'eslint-plugin-jsdoc'
@@ -44,7 +39,7 @@ import pluginBoundaries    from 'eslint-plugin-boundaries'
 
 
 const vlbPlugins = {
-	...plugins,
+	...neostandard.plugins,
 
 	get unicorn () {
 		return pluginUnicorn
@@ -52,6 +47,10 @@ const vlbPlugins = {
 
 	get boundaries () {
 		return pluginBoundaries
+	},
+
+	get mocha () {
+		return partsMocha.plugins.mocha
 	},
 }
 
@@ -200,8 +199,6 @@ export function eslintConfigVolebo (options) {
 
 				'guard-for-in':  ['error'],
 				'no-console':    ['error'],  // use `debug` or other packages, or add explicit "eslint-ignore" for lines with console.xxx
-				// TODO: move 'no-alert' to the "browser.mjs"
-				'no-alert':      ['error'],
 
 				'no-plusplus':   ['error', {
 					allowForLoopAfterthoughts: true,
@@ -364,87 +361,8 @@ export function eslintConfigVolebo (options) {
 				'unicorn/prefer-module': ['off'],
 			},
 		},
-
-		// pluginMocha.configs.flat.all,   //  to enable all
-		pluginMocha.configs.flat.recommended,
-		{
-			name: 'volebo/default/tests',
-
-			files: [
-				'**/*.test.js',
-				'**/*.test.mjs',
-				'**/*.test.cjs',
-				'**/*.spec.js',
-				'**/*.spec.cjs',
-				'**/*.spec.mjs',
-			],
-
-			languageOptions: {
-				globals: {
-					...globals.mocha,
-					...globals.chai,
-
-					'fn2sn': true,
-					'filename2suitename': true,
-					'filename2suitenameEsm': true,
-					'filename2suitenameCjs': true,
-					'tags': true,
-				},
-			},
-
-			plugins: {
-				'chai-friendly': pluginChaiFriendly,
-			},
-
-			rules: {
-				// in mocha tests there are a lot of `describe` and `it`
-				// so actual tests are on 4th of 5th or 6th level of nested
-				// callbacks. Thus: relaxing the rule:
-				'max-nested-callbacks': ['warn', { 'max': 8 }],
-
-				// -----------------------------------------------------------------
-				// mocha
-				// -----------------------------------------------------------------
-
-				'mocha/no-mocha-arrows': ['warn'],
-
-				// there is a problem with this rule: we generate the "top level"
-				// test name (in `describe`) using filename. I _could_ consider
-				// breaking the top level decribe call into two lines:
-				// - get name
-				// - call describe
-				// but ATM it is easier for me to disable this rule completely
-				//
-				// another reason: we use dynamically generated tests:
-				// https://mochajs.org/#dynamically-generating-tests
-				// TODO: consider turning on , or looking for an alternative
-				'mocha/no-setup-in-describe': ['off'],
-
-				// chaiJS has expressions like:
-				//
-				// 		expect(act).is.null
-				//
-				// but original eslint's 'no-unused-expressions' raise an error.
-				// in order to keep the rule working, but with chai-expressions
-				// this plugin is added:
-				'no-unused-expressions': ['off'],
-				'chai-friendly/no-unused-expressions': ['error', {
-					allowShortCircuit: true,
-					allowTernary: true,
-					allowTaggedTemplates: true,
-				}],
-
-				// TODO: enable it when mocha-plugin will be able to support construcitons `tags().describe('', fn() { before...`
-				// #bugRuleMochaTopLevelHooks GL-17
-				'mocha/no-top-level-hooks': ['off'],
-			},
-			settings: {
-				'mocha/additionalCustomNames': [
-					{ name: 'tags()', type: 'suite',    interfaces: ['BDD', 'TDD', 'exports'] },
-					{ name: 'tags()', type: 'testCase', interfaces: ['BDD', 'TDD', 'exports'] },
-				],
-			},
-		},
+		...partsMocha.config,
+		...partsBrowser.config,
 	]
 }
 
