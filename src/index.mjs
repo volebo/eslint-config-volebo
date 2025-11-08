@@ -356,6 +356,9 @@ export function eslintConfigVolebo (options) {
 				// but if you typed `undefined` - i won't complain
 				'unicorn/no-useless-undefined': ['off'],
 
+				// well, temporary warn, but most probably will be 'off'
+				'unicorn/no-immediate-mutation': ['warn'],
+
 				// eslint's defaut "no-lonely-if" is more than enough and this rule
 				'unicorn/no-lonely-if': ['off'],
 
