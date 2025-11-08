@@ -343,12 +343,15 @@ export function eslintConfigVolebo (options) {
 				// because it complains about `try{} catch (err) {}`
 				'unicorn/catch-error-name': ['off'],
 
-				// because I used to invert conditions to move a shorter block up
+				// I like to invert conditions to write a shorter code block first
 				'unicorn/no-negated-condition': ['off'],
 
-				// it doesn't make a lot of sense:
 				// `substring` is just as legal as slice
 				'unicorn/prefer-string-slice': ['off'],
+
+				// because explicit better than implicit. you can omit it,
+				// but if you typed `undefined` - i won't complain
+				'unicorn/no-useless-undefined': ['off'],
 
 				// eslint's defaut "no-lonely-if" is more than enough and this rule
 				'unicorn/no-lonely-if': ['off'],
