@@ -297,7 +297,10 @@ export function eslintConfigVolebo (options) {
 				// // BUG: GL#19: yoda style is not supported by this rule
 				'unicorn/explicit-length-check': ['off'],
 
-				// there is no problem with top-level Promise-chainj
+				// temporary no problem with empty `export {}`
+				'unicorn/require-module-specifiers': ['off'],
+
+				// there is no problem with top-level Promise-chains
 				'unicorn/prefer-top-level-await': ['off'],
 
 				// it is annoying that `jsonAsStr` is not a good name
