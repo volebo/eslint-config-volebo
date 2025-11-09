@@ -22,9 +22,11 @@
 # You should have received a copy of the MIT License along with this
 # program. If not, see <https://opensource.org/licenses/MIT>.
 #
+# http://spdx.org/licenses/MIT
+#
 ################################################################################
 
-image: node:22
+image: node:24
 
 stages:
   - test
@@ -50,7 +52,7 @@ cache:
   - npm install --quiet
 
 
-test.lint:
+test-lint:
   stage: test
   script:
     - *z-job-script--versions
@@ -61,27 +63,28 @@ test.lint:
     reports:
       codequality: gl-codequality.json
 
-test.test.20:
+
+test-PREV:
   stage: test
-  image: node:20
+  image: node:22
   script:
     - *z-job-script--versions
 
     - npm run test
 
-# # FOR `eslint-config-volebo` project coverage makes little sense,
-# # because the project mainly contains a CONFIG, and nearly 0 code
-#
-# test.coverage:
-#   stage: test
-#   script:
-#     - *z-job-script--versions
 
-#     - npm install -g codecov
-#     - npm run coverage
-#     - npx codecov --token=${VLB_CI_CODECOV_TOKEN}
+test-coverage:
+  # latest Node, test+coverage
+  stage: test
+  script:
+    - *z-job-script--versions
 
-#   coverage: '/Statements\s*:\s*([\d.%]+).*$/'
+    - npm run coverage
+    # - npm install -g codecov
+    # - npx codecov --token=${VLB_CI_CODECOV_TOKEN}
+
+  coverage: '/Statements\s*:\s*([\d.%]+).*$/'
+
 
 release:
   stage: release
@@ -97,9 +100,12 @@ release:
   script:
     - *z-job-script--versions
 
-    - echo "//registry.npmjs.org/:_authToken=${VLB_CI_NPM_TOKEN}" > ~/.npmrc
+    - npm config set --location=user //registry.npmjs.org/:_authToken="${VLB_CI_NPM_TOKEN}"
     - npm whoami
     - npm publish --provenance
+    - npm logout
+
 
 include:
   - template: Jobs/SAST.gitlab-ci.yml
+
