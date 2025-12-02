@@ -27,6 +27,7 @@ export const config = [
 				...globals.mocha,
 				...globals.chai,
 
+				'chaiFile': true,
 				'fn2sn': true,
 				'filename2suitename': true,
 				'filename2suitenameEsm': true,
