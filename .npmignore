@@ -30,11 +30,10 @@
 
 # place per-project settings here
 
-/tools/
+/tools
 OLD.*
-
-/dist                # !!! DIFFERS FROM .gitignore, required for NPM !!!
-#/src                # !!! DIFFERS FROM .gitignore, required for NPM !!!
+README_old.md
+emergency.eslint.config.mjs
 
 # =========================================
 # common part
@@ -100,13 +99,16 @@ tests/
 .node-inspectorrc
 .nyc.config.*js
 .travis.yml
-CHANGELOG.md
-CONTRIBUTING.md
-HEADER
 babel.config.js
 capacitor.config.json
+CHANGELOG.md
+CONTRIBUTING.md
 cypress.json
 eslint.config.*js
 gulpfile.js
+HEADER
 nyc.config.*js
+package-lock.json
+project.json
 vue.config.js
+vue.config.*js

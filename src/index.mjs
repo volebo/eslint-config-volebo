@@ -370,7 +370,10 @@ export function eslintConfigVolebo (options) {
 
 				// unicorn/prefer-string-raw
 			},
+		},
 
+		{
+			name: 'volebo/default/ignores',
 			ignores: [
 				'bower_components/*',
 				'coverage/',
@@ -378,9 +381,9 @@ export function eslintConfigVolebo (options) {
 				'log/',
 				'node_modules/*',
 				'tmp/',
+				'dist/',
 			],
 		},
-
 		{
 			name: 'volebo/default/cjs',
 			files: [
