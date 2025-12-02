@@ -92,8 +92,9 @@ export function eslintConfigVolebo (options) {
 			name: 'volebo/default',
 
 			languageOptions: {
-				// ecmaVersion: 14, // 2023,
-				ecmaVersion: 2025,
+				// ecmaVersion: 2023, // 14,
+				// ecmaVersion: 2025,
+				ecmaVersion: 2026,
 				sourceType: 'module',
 			},
 
