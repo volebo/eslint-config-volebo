@@ -38,6 +38,7 @@ emergency.eslint.config.mjs
 # =========================================
 # common part
 # =========================================
+
 *.sublime-project
 *.sublime-workspace
 
@@ -51,20 +52,23 @@ project.json
 
 # dependencies
 .npm
-/node_modules
-/bower_components
+.npm-cache/
+.pnpm-store/
+node_modules/
+**/node_modules/
+bower_components/
 
 # compiled output
-/tmp
-/build
+tmp/
+build/
 
 # Coverage directory used by tools like istanbul
-/coverage
-/lib-cov
+coverage/
+lib-cov/
 
 npm-debug.log*
-/logs
-/log
+logs/
+log/
 *.log
 testem.log
 
@@ -74,6 +78,8 @@ testem.log
 
 test/
 tests/
+**/*.spec.js
+**/*.test.js
 **/*.spec.?js
 **/*.test.?js
 
@@ -81,34 +87,42 @@ tests/
 
 .github/
 .gitlab/
+.nx/
 .serverless/
 
 .browserslistrc
 .bithoundrc
+.c8.mjs
+.c8rc
 .c8rc.json
 .codeclimate.yml
 .editorconfig
 .eslintignore
 .eslintrc.js
-.eslint.config.mjs
 .eslint.config.js
+.eslint.config.*js
 .git
+.gitattributes
 .gitignore
+.gitmodules
 .gitlab-ci.yml
+.mocharc.js
 .mocharc.*js
 .node-inspectorrc
+.nyc.config.js
 .nyc.config.*js
 .travis.yml
-babel.config.js
-capacitor.config.json
 CHANGELOG.md
 CONTRIBUTING.md
+HEADER
+babel.config.js
+capacitor.config.json
 cypress.json
+eslint.config.js
 eslint.config.*js
 gulpfile.js
-HEADER
+nyc.config.js
 nyc.config.*js
 package-lock.json
-project.json
 vue.config.js
 vue.config.*js
