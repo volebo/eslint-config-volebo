@@ -363,6 +363,17 @@ export function eslintConfigVolebo (options) {
 				// eslint's defaut "no-lonely-if" is more than enough and this rule
 				'unicorn/no-lonely-if': ['off'],
 
+				// because of
+				//   https://github.com/sindresorhus/eslint-plugin-unicorn/issues/2636
+				//   https://github.com/sindresorhus/eslint-plugin-unicorn/issues/1057
+				// and the fact that if there is an optimization - let's do it
+				// when and where it matters.
+				//
+				// Sometimes 3 lines with ".push" is just easier to read
+				// Sometimes it is just annoying that Readable.read can't be
+				// N-times just because of the "stylistic" rules
+				'unicorn/prefer-single-call': ['off'],
+
 				// because `concat` works differently sometimes
 				'unicorn/prefer-spread': ['off'],
 				// -----------------------------------------------------------------
