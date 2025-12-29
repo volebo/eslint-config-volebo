@@ -363,6 +363,8 @@ export function eslintConfigVolebo (options) {
 				// eslint's defaut "no-lonely-if" is more than enough and this rule
 				'unicorn/no-lonely-if': ['off'],
 
+				// because `concat` works differently sometimes
+				'unicorn/prefer-spread': ['off'],
 				// -----------------------------------------------------------------
 				// TODO: MAYBE THESE TOO:
 				// -----------------------------------------------------------------
