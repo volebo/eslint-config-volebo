@@ -328,15 +328,14 @@ export function eslintConfigVolebo (options) {
 				// without `null` - it is just weird
 				'unicorn/no-null': ['off'],
 
-				// because of https://github.com/sindresorhus/eslint-plugin-unicorn/issues/1193
+				// because of
+				//   https://github.com/sindresorhus/eslint-plugin-unicorn/issues/1193
 				// I'm going to disable these three rules, since they make
-				// the "not bad"-code look like there is a critical error
+				// a "not bad"-code look like there is a critical error
 				'unicorn/no-array-for-each': ['off'],
 				'unicorn/no-array-callback-reference': ['off'],
 				'unicorn/no-array-method-this-argument': ['off'],
 				'unicorn/no-array-reduce': ['off'],
-				// ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
 
 				// we completely rely on `no-array-constructor` rule
 				// and there is nothing bad in calling `new Array(5)` for creating
@@ -376,6 +375,9 @@ export function eslintConfigVolebo (options) {
 
 				// because `concat` works differently sometimes
 				'unicorn/prefer-spread': ['off'],
+
+// unicorn/switch-case-braces
+
 				// -----------------------------------------------------------------
 				// TODO: MAYBE THESE TOO:
 				// -----------------------------------------------------------------
