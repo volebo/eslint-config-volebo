@@ -315,6 +315,8 @@ export function eslintConfigVolebo (options) {
 				// UNICORN
 				// -----------------------------------------------------------------
 
+				'unicorn/numeric-separators-style': ['error', { onlyIfContainsSeparator: true }],
+
 				// need to consider it again
 				// but we use `Number` or `Boolean`, so let's allow `BigInt`:
 				'unicorn/prefer-bigint-literals': ['off'],
