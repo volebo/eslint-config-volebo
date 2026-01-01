@@ -37,6 +37,7 @@ import pluginStylistic     from '@stylistic/eslint-plugin'
 
 import * as partsMocha     from './parts/mocha.mjs'
 import * as partsBrowser   from './parts/browser.mjs'
+import * as partsSemi      from './parts/semi.mjs'
 import * as partsStyle     from './parts/ns-style.mjs'
 import * as partsMdrnz     from './parts/ns-modernization.mjs'
 
@@ -160,7 +161,6 @@ export function eslintConfigVolebo (options) {
 				// -----------------------------------------------------------------
 
 				'object-shorthand': ['error', 'consistent'],
-				'no-extra-semi': ['error'],
 
 				// because we can rely on unicorn/no-process-exit (TESTED)
 				'no-process-exit': ['off'],
@@ -304,8 +304,8 @@ export function eslintConfigVolebo (options) {
 
 				'@stylistic/no-mixed-spaces-and-tabs': ['error'],
 				'@stylistic/no-tabs': ['off', { allowIndentationTabs: true }],
+
 				'@stylistic/quote-props': ['error', 'consistent', { 'keywords': true }],
-				'@stylistic/semi': ['error', 'never'],
 				'@stylistic/quotes': ['error', 'single', {
 					avoidEscape: true,
 					allowTemplateLiterals: 'avoidEscape',
@@ -441,6 +441,7 @@ export function eslintConfigVolebo (options) {
 		},
 		...partsMocha.config,
 		...partsBrowser.config,
+		...partsSemi.config,
 	]
 }
 
