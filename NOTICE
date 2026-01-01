@@ -1,0 +1,12 @@
+NOTICE
+
+## Files copied from other repos
+
+### Neostandard
+
+git://github.com/neostandard/neostandard.git
+
+Files:
+
+- /lib/configs/modernization.js
+- /lib/configs/style.js
