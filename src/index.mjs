@@ -30,8 +30,15 @@ import neostandard         from 'neostandard'
 import pluginUnicorn       from 'eslint-plugin-unicorn'
 import pluginBoundaries    from 'eslint-plugin-boundaries'
 
+// hacks and tricks
+//   https://github.com/neostandard/neostandard/pull/299
+// because @stylistic is outdated in the neostandard...
+import pluginStylistic     from '@stylistic/eslint-plugin'
+
 import * as partsMocha     from './parts/mocha.mjs'
 import * as partsBrowser   from './parts/browser.mjs'
+import * as partsStyle     from './parts/ns-style.mjs'
+import * as partsMdrnz     from './parts/ns-modernization.mjs'
 
 
 // import jsdoc from 'eslint-plugin-jsdoc'
@@ -52,8 +59,11 @@ const vlbPlugins = {
 	get mocha () {
 		return partsMocha.plugins.mocha
 	},
-}
 
+	get stylistic () {
+		return pluginStylistic
+	},
+}
 
 export { vlbPlugins as plugins }
 
@@ -61,8 +71,9 @@ export { resolveIgnoresFromGitignore } from 'neostandard'
 
 export function eslintConfigVolebo (options) {
 
-	// `false` when you have `prettier`
-	const withStyleRules = options?.withStyleRules ?? true
+	// do not use neostandard's style from the package, and
+	// use the locally copied version of their rules (ns-styles.mjs)
+	const noNeostandardStyle = true
 
 	return [
 		...neostandard({
@@ -73,7 +84,7 @@ export function eslintConfigVolebo (options) {
 			// ...require('neostandard').resolveIgnoresFromGitignore(),
 			// ],
 			noJsx: true,
-			noStyle: !withStyleRules,
+			noStyle: noNeostandardStyle,
 			semi: false,     // no semicolons
 		}),
 
@@ -84,6 +95,18 @@ export function eslintConfigVolebo (options) {
 		// jsdoc.configs['flat/recommended-typescript-flavor'],
 
 		pluginUnicorn.configs['flat/recommended'],
+
+		{
+			name: 'volebo/default/plugins',
+			plugins: {
+				'boundaries': pluginBoundaries,
+				'@stylistic': pluginStylistic,
+			},
+		},
+
+		// temporary copied neostandard configs
+		noNeostandardStyle ? partsStyle.config : {},
+		noNeostandardStyle ? partsMdrnz.modernizationStyles : {},
 
 		// =========================================================================
 		// volebo config:
@@ -98,9 +121,6 @@ export function eslintConfigVolebo (options) {
 				sourceType: 'module',
 			},
 
-			plugins: {
-				boundaries: pluginBoundaries,
-			},
 
 			rules: {
 				...pluginBoundaries.configs.recommended.rules,
@@ -327,6 +347,11 @@ export function eslintConfigVolebo (options) {
 				// 	},
 				// }],
 
+				// well, temporary warn, but most probably will be 'off'
+				'unicorn/no-immediate-mutation': ['warn'],
+
+				// -----------------------------------------------------------------
+
 				// what? wait, we like to use null
 				// we use DB, and sometimes we need to erase the content of a field
 				// without `null` - it is just weird
@@ -360,9 +385,6 @@ export function eslintConfigVolebo (options) {
 				// but if you typed `undefined` - i won't complain
 				'unicorn/no-useless-undefined': ['off'],
 
-				// well, temporary warn, but most probably will be 'off'
-				'unicorn/no-immediate-mutation': ['warn'],
-
 				// eslint's defaut "no-lonely-if" is more than enough and this rule
 				'unicorn/no-lonely-if': ['off'],
 
@@ -380,13 +402,12 @@ export function eslintConfigVolebo (options) {
 				// because `concat` works differently sometimes
 				'unicorn/prefer-spread': ['off'],
 
-// unicorn/switch-case-braces
-
 				// -----------------------------------------------------------------
 				// TODO: MAYBE THESE TOO:
 				// -----------------------------------------------------------------
 				// '@stylistic/object-property-newline': ['off'],
 
+				// unicorn/switch-case-braces
 				// unicorn/prefer-string-raw
 			},
 		},
