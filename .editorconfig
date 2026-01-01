@@ -55,6 +55,6 @@ insert_final_newline = false
 trim_trailing_whitespace = false
 
 # They have troubles with TABS. Use 2 spaces
-[{bower,package}.json]
+[{bower,package,project}.json]
 indent_style = space
 indent_size = 2

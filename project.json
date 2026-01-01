@@ -1,10 +1,13 @@
 {
-	"name": "eslint-config-volebo",
-	"sourceRoot": "{projectRoot}/src",
-	"targets": {
-		"lint": {},
-		"test": {},
-		"version_2": {},
-		"version": {}
-	}
+  "name": "eslint-config-volebo",
+  "sourceRoot": "{projectRoot}/src",
+  "tags": [
+    "repo:eslint-config-volebo",
+  ],
+  "targets": {
+    "lint": {},
+    "test": {},
+    "version_2": {},
+    "version": {}
+  }
 }
