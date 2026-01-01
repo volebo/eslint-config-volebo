@@ -15,11 +15,13 @@ const n1 = Number(1)
 const f1 = Boolean(n1)
 
 const s1 = String(f1)
-debug(s1)
+const s2 = 'a valid string\n' + `${f1} another valid backtick string` + `tick helps "with" 'quotes'`
+debug(s1, s2)
 
 const b1 = BigInt('12312312312312312312312312313123123123131313123123')
 const b2 = 123_123_123_123_123_123_123_123_123_131_231_231_231_313_123_123n
-debug(b1, b2)
+const b3 = 231313123123n
+debug(b1, b2, b3)
 
 // ----------
 // embed NON primitive types:

@@ -286,6 +286,10 @@ export function eslintConfigVolebo (options) {
 				'@stylistic/no-tabs': ['off', { allowIndentationTabs: true }],
 				'@stylistic/quote-props': ['error', 'consistent', { 'keywords': true }],
 				'@stylistic/semi': ['error', 'never'],
+				'@stylistic/quotes': ['error', 'single', {
+					avoidEscape: true,
+					allowTemplateLiterals: 'avoidEscape',
+				}],
 
 				// -----------------------------------------------------------------
 				// UNICORN

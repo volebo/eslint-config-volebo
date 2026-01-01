@@ -15,6 +15,7 @@
     "coverage": "node tools/nyc-to-c8.mjs .c8rc.json && pnpm exec c8 mocha"
   },
   "dependencies": {
+    "@stylistic/eslint-plugin": "^5.6.1",
     "eslint-plugin-boundaries": "^5.1.0",
     "eslint-plugin-chai-friendly": "^1.1.0",
     "eslint-plugin-mocha": "^11.2.0",
