@@ -11,7 +11,7 @@ export const config = [
 	// pluginMocha.configs.flat.all,   //  to enable all
 	pluginMocha.configs.recommended,
 	{
-		name: 'volebo/default/tests',
+		name: 'volebo/mocha',
 
 		files: [
 			'**/*.test.js',

@@ -3,6 +3,7 @@
 
 export const config = [
 	{
+		name: 'volebo/browser',
 		rules: {
 			'no-script-url': ['error'],
 			'no-alert':      ['error'],
