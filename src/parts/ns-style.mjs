@@ -33,16 +33,15 @@ https://github.com/neostandard/neostandard/blob/main/lib/configs/style.js
 */
 
 
-'use strict'
+import pluginStylistic     from '@stylistic/eslint-plugin'
 
-const stylistic = require('@stylistic/eslint-plugin')
 
-module.exports = /** @satisfies {import('eslint').Linter.Config} */ ({
+export const config = {
 	name: 'neostandard/style',
 
 	plugins: {
 		// TODO: Remove type cast once https://github.com/eslint-stylistic/eslint-stylistic/issues/506 is fixed
-		'@stylistic': /** @type {import('eslint').ESLint.Plugin} */ (stylistic),
+		'@stylistic': /** @type {import('eslint').ESLint.Plugin} */ (pluginStylistic),
 	},
 	rules: {
 		'@stylistic/array-bracket-spacing': ['error', 'never'],
@@ -61,7 +60,7 @@ module.exports = /** @satisfies {import('eslint').Linter.Config} */ ({
 		'@stylistic/computed-property-spacing': ['error', 'never', { enforceForClassMembers: true }],
 		'@stylistic/dot-location': ['error', 'property'],
 		'@stylistic/eol-last': 'error',
-		'@stylistic/func-call-spacing': ['error', 'never'],
+		'@stylistic/function-call-spacing': ['error', 'never'],
 		'@stylistic/generator-star-spacing': ['error', { before: true, after: true }],
 		'@stylistic/indent': ['error', 2, {
 			SwitchCase: 1,
@@ -102,7 +101,7 @@ module.exports = /** @satisfies {import('eslint').Linter.Config} */ ({
 		'@stylistic/no-whitespace-before-property': 'error',
 		'@stylistic/object-curly-newline': ['error', { multiline: true, consistent: true }],
 		'@stylistic/object-curly-spacing': ['error', 'always'],
-		'@stylistic/object-property-newline': ['error', { allowMultiplePropertiesPerLine: true }],
+		'@stylistic/object-property-newline': ['error', { allowAllPropertiesOnSameLine: true }],
 		'@stylistic/operator-linebreak': ['error', 'after', { overrides: { '?': 'before', ':': 'before', '|>': 'before' } }],
 		'@stylistic/padded-blocks': ['error', { blocks: 'never', switches: 'never', classes: 'never' }],
 		'@stylistic/quote-props': ['error', 'as-needed'],
@@ -124,4 +123,4 @@ module.exports = /** @satisfies {import('eslint').Linter.Config} */ ({
 		'@stylistic/wrap-iife': ['error', 'any', { functionPrototypeMethods: true }],
 		'@stylistic/yield-star-spacing': ['error', 'both'],
 	},
-})
+}

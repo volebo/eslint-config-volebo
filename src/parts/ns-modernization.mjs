@@ -33,25 +33,7 @@ https://github.com/neostandard/neostandard/blob/main/lib/configs/modernization.j
 */
 
 
-'use strict'
-
-module.exports.modernization = /** @satisfies {import('eslint').Linter.Config} */ ({
-	name: 'neostandard/modernization-since-standard-17',
-
-	rules: {
-		'dot-notation': 'off',
-		// Caused many regressions
-		// 'no-unused-vars': ['error', {
-		//   vars: 'all',
-		//   args: 'all',
-		//   argsIgnorePattern: '^_',
-		//   ignoreRestSiblings: true,
-		// }],
-		'n/no-deprecated-api': 'warn',
-	},
-})
-
-module.exports.modernizationStyles = /** @satisfies {import('eslint').Linter.Config} */ ({
+export const modernizationStyles = /** @satisfies {import('eslint').Linter.Config} */ ({
 	name: 'neostandard/style/modernization-since-standard-17',
 
 	rules: {
