@@ -43,6 +43,7 @@ cache:
     prefix: node_modules
   paths:
     - node_modules/
+    - .pnpm-store/
 
 # ------------------------------------------------------------------------------
 
@@ -58,7 +59,8 @@ test-lint:
     - *z-job-script--versions
 
     - npm install eslint-formatter-gitlab
-    - npm run lint -- --format gitlab
+    - npx eslint ./src/ --format gitlab
+
   artifacts:
     reports:
       codequality: gl-codequality.json
@@ -70,7 +72,7 @@ test-PREV:
   script:
     - *z-job-script--versions
 
-    - npm run test
+    - npx mocha
 
 
 test-coverage:
@@ -79,7 +81,9 @@ test-coverage:
   script:
     - *z-job-script--versions
 
-    - npm run coverage
+    - node tools/nyc-to-c8.mjs .c8rc.json
+    - npx c8 mocha
+
     # - npm install -g codecov
     # - npx codecov --token=${VLB_CI_CODECOV_TOKEN}
 
