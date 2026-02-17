@@ -3,6 +3,7 @@
   "sourceRoot": "{projectRoot}/src",
   "tags": [
     "repo:eslint-config-volebo",
+    "edition:community",
   ],
   "targets": {
     "lint": {},
