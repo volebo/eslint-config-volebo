@@ -35,6 +35,7 @@ import pluginBoundaries    from 'eslint-plugin-boundaries'
 // because @stylistic is outdated in the neostandard...
 import pluginStylistic     from '@stylistic/eslint-plugin'
 
+import * as partsImportX   from './parts/importx.mjs'
 import * as partsMocha     from './parts/mocha.mjs'
 import * as partsBrowser   from './parts/browser.mjs'
 import * as partsSemi      from './parts/semi.mjs'
@@ -63,6 +64,10 @@ const vlbPlugins = {
 
 	get stylistic () {
 		return pluginStylistic
+	},
+
+	get importX () {
+		return partsImportX.plugins.importX
 	},
 }
 
@@ -441,6 +446,7 @@ export function eslintConfigVolebo (options) {
 				'unicorn/prefer-module': ['off'],
 			},
 		},
+		...partsImportX.config,
 		...partsMocha.config,
 		...partsBrowser.config,
 		...partsSemi.config,
