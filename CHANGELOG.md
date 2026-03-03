@@ -36,6 +36,8 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 >
 --------------------------------------------------------------------------------
 
+## [5.0.1](https://gitlab.com/volebo/eslint-config-volebo/compare/release/eslint-config-volebo/v5.0.0...release/eslint-config-volebo/v5.0.1) (2026-03-03)
+
 ## [5.0.0](https://gitlab.com/volebo/eslint-config-volebo/compare/release/eslint-config-volebo/v4.3.0...release/eslint-config-volebo/v5.0.0) (2026-03-03)
 
 
