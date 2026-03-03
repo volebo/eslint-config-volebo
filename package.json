@@ -1,6 +1,6 @@
 {
   "name": "eslint-config-volebo",
-  "version": "4.3.0",
+  "version": "5.0.0",
   "description": "ESLint rules for volebo.net",
   "exports": {
     ".": "./src/index.mjs"

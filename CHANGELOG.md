@@ -36,6 +36,41 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 >
 --------------------------------------------------------------------------------
 
+## [5.0.0](https://gitlab.com/volebo/eslint-config-volebo/compare/release/eslint-config-volebo/v4.3.0...release/eslint-config-volebo/v5.0.0) (2026-03-03)
+
+
+### ⚠ BREAKING CHANGES
+
+* **deps:** migrated to eslint@10
+
+### Features
+
+* **deps:** migrated to eslint@10 ([82e2e74](https://gitlab.com/volebo/eslint-config-volebo/commit/82e2e74155a905269c0a341feb8c2a9163127ec0))
+* **globals:** allow having `fn2sn` in test files (as a global fn) ([98dd39f](https://gitlab.com/volebo/eslint-config-volebo/commit/98dd39f1baf271341bb7e4c0d8138845080f3b37))
+* **rules:** upgrade language ecmaVersion to 2026 ([3ec4519](https://gitlab.com/volebo/eslint-config-volebo/commit/3ec4519d19c68fe94e2a62741a9c90a6a2def3f2))
+* **rules:** upgrade `@stylistic` plugin (and copy entire configs from neostandard) ([8e3b16d](https://gitlab.com/volebo/eslint-config-volebo/commit/8e3b16d76941ddc45878e0fc8565b5ff93ab42db))
+* **rules:** `@stylistic/no-multiple-empty-lines` allows 0 e.lines at beginning ([cf93c43](https://gitlab.com/volebo/eslint-config-volebo/commit/cf93c435a8fb08884c4786f6720f1f63eb6ee067))
+* **rules:** `new-for-builtins` with crazy restriction for `new Object(123)` ([959d687](https://gitlab.com/volebo/eslint-config-volebo/commit/959d6876eeee28f20e294d75f34a584069a181aa))
+* **rules:** `no-array-constructor` - allows `new Array(LEN)` but nothing else ([d6df476](https://gitlab.com/volebo/eslint-config-volebo/commit/d6df47643ab41995260b84dca7cd9411b780edc4))
+* **rules:** add `chaiFile` to globals for test-files ([25df4ed](https://gitlab.com/volebo/eslint-config-volebo/commit/25df4ed788b5ad3fa6c2f29b585dc6e3d2cdbcd7))
+* **rules:** add `unicorn/numeric-separators-style` rule ([0b044a8](https://gitlab.com/volebo/eslint-config-volebo/commit/0b044a814fccc4cc86b82b125ff1c5f0ba90c60c))
+* **rules:** err=>warn for `unicorn/no-immediate-mutation` ([566dac6](https://gitlab.com/volebo/eslint-config-volebo/commit/566dac6850dff5175c0a48b248943b67e4bb06a8))
+
+### Bug Fixes
+
+* **deps:** upgrade dependencies (neostandard) ([cac4442](https://gitlab.com/volebo/eslint-config-volebo/commit/cac444296048ae10847176e939881ac9c0d228d3))
+* **repo:** migrate `package.json` scripts to `pnpm` ([24ef2a2](https://gitlab.com/volebo/eslint-config-volebo/commit/24ef2a283e0076e3f7c8ce51523c3d2369223f9b))
+* **rules:** disable `unicorn/no-useless-undefined` ([3e20c3b](https://gitlab.com/volebo/eslint-config-volebo/commit/3e20c3bfcf79afefba9d79b99a3e360737948ed6))
+* **rules:** disable `unicorn/prefer-bigint-literals` ([585c641](https://gitlab.com/volebo/eslint-config-volebo/commit/585c6412a3e9e61ece9b0bb1d05ef08d18a0ca80))
+* **rules:** disable `unicorn/require-module-specifiers` ([9bea12d](https://gitlab.com/volebo/eslint-config-volebo/commit/9bea12d629605d1ec85531affe02ed3ea02b58ed))
+* **rules:** disable `unicorn/explicit-length-check` ([bec7166](https://gitlab.com/volebo/eslint-config-volebo/commit/bec7166e9b6a001ebf429f78fad50e0635438287))
+* **rules:** disable `unicorn/prefer-single-call` ([6f463eb](https://gitlab.com/volebo/eslint-config-volebo/commit/6f463eb791d4d455fbe0e097365082703603dd6e))
+* **rules:** disable `unicorn/prefer-spread` ([4a2afde](https://gitlab.com/volebo/eslint-config-volebo/commit/4a2afde906524ff13657c7ff77e09c0ccf999188))
+* **rules:** improve `@stylistic/operator-linebreak` ([36d8c58](https://gitlab.com/volebo/eslint-config-volebo/commit/36d8c58ab51a03759bb55ffbff7452cccbbf2048))
+* **rules:** relax `@stylistic/quotes` ([47013ed](https://gitlab.com/volebo/eslint-config-volebo/commit/47013edb81fb517b8ea20a0350e0af0ac3a0e3a0))
+* **cicd:** fix CICD scripts (npm/pnpm problems in repo/monorepo) ([14adc7a](https://gitlab.com/volebo/eslint-config-volebo/commit/14adc7ac5d94d3e51ae95fcb191d09a346b15173))
+
+
 ## [4.3.0](https://gitlab.com/volebo/eslint-config-volebo/compare/release/eslint-config-volebo/v4.2.0...release/eslint-config-volebo/v4.3.0) (2025-04-19)
 
 
