@@ -33,7 +33,9 @@ stages:
   - release
 
 variables:
-  SAST_EXCLUDED_PATHS: "what, tmp"
+  # gitlab tools
+  SECRET_DETECTION_ENABLED: 'true'
+  SAST_EXCLUDED_PATHS: "docker, tmp"
 
 # http://docs.gitlab.com/ce/ci/yaml/README.html#cache
 cache:
@@ -51,6 +53,14 @@ cache:
   - node --version
   - npm --version
   - npm install --quiet
+
+
+secret_detection:
+  stage: test
+
+
+sast:
+  stage: test
 
 
 test-lint:
@@ -107,19 +117,26 @@ release:
     - if: '$CI_COMMIT_TAG =~ /^release\//'
       when: manual
 
+  environment:
+    name: "production"
+    action: start  # start / stop // prepare / verify / access
+
   id_tokens:
     SIGSTORE_ID_TOKEN:
-      aud: sigstore
+      aud: "sigstore"
+    NPM_ID_TOKEN:
+      aud: "npm:registry.npmjs.org"
 
   script:
     - *z-job-script--versions
 
-    - npm config set --location=user //registry.npmjs.org/:_authToken="${VLB_CI_NPM_TOKEN}"
-    - npm whoami
+    # https://docs.npmjs.com/trusted-publishers
+    - npm config set --location=user //registry.npmjs.org/:_authToken "${NPM_ID_TOKEN}"
     - npm publish --provenance
     - npm logout
 
 
 include:
+  - template: Security/Secret-Detection.gitlab-ci.yml
   - template: Jobs/SAST.gitlab-ci.yml
 
