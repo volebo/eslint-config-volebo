@@ -28,10 +28,10 @@ export const config = [
 				...globals.chai,
 
 				'chaiFile': true,
-				'fn2sn': true,
 				'filename2suitename': true,
-				'filename2suitenameEsm': true,
 				'filename2suitenameCjs': true,
+				'filename2suitenameEsm': true,
+				'fn2sn': true,
 				'tags': true,
 			},
 		},

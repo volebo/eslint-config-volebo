@@ -15,22 +15,22 @@
     "coverage": "node tools/nyc-to-c8.mjs .c8rc.json && pnpm exec c8 mocha"
   },
   "dependencies": {
-    "@stylistic/eslint-plugin": "^5.8.0",
+    "@stylistic/eslint-plugin": "^5.9.0",
     "eslint-plugin-boundaries": "^5.4.0",
     "eslint-plugin-chai-friendly": "^1.1.0",
     "eslint-plugin-mocha": "^11.2.0",
     "eslint-plugin-unicorn": "^63.0.0",
-    "globals": "^17.3.0",
+    "globals": "^17.4.0",
     "neostandard": "^0.12.2"
   },
   "devDependencies": {
-    "c8": "^10.1.3",
+    "c8": "^11.0.0",
     "chai": "^6.2.0",
     "eslint": "^9.39.2",
     "mocha": "^11.7.4"
   },
   "peerDependencies": {
-    "eslint": ">= 9.0.0"
+    "eslint": ">= 9.0.0 || >= 10.0.0"
   },
   "license": "SEE LICENSE IN LICENSE",
   "private": false,
