@@ -75,6 +75,16 @@ test-PREV:
     - npx mocha
 
 
+test-eslint9:
+  stage: test
+  script:
+    - *z-job-script--versions
+
+    - npm install eslint@9
+    - npx eslint --version
+    - npx mocha
+
+
 test-coverage:
   # latest Node, test+coverage
   stage: test

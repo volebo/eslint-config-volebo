@@ -14,6 +14,14 @@
     "lint": "pnpm exec eslint ./src/",
     "coverage": "node tools/nyc-to-c8.mjs .c8rc.json && pnpm exec c8 mocha"
   },
+  "overrides": {
+    "neostandard": {
+      "eslint": "^10"
+    },
+    "eslint-plugin-import-x": {
+      "eslint": "^10"
+    }
+  },
   "dependencies": {
     "@stylistic/eslint-plugin": "^5.9.0",
     "eslint-plugin-boundaries": "^5.4.0",
@@ -27,11 +35,11 @@
   "devDependencies": {
     "c8": "^11.0.0",
     "chai": "^6.2.0",
-    "eslint": "^9.39.2",
+    "eslint": "^10.0.2",
     "mocha": "^11.7.4"
   },
   "peerDependencies": {
-    "eslint": ">= 9.0.0 || >= 10.0.0"
+    "eslint": "^9.39.0 || ^10.0.0"
   },
   "license": "SEE LICENSE IN LICENSE",
   "private": false,
@@ -67,7 +75,7 @@
     }
   ],
   "engines": {
-    "node": ">=18.0.0",
-    "npm": ">=8.0.0"
+    "node": "^20.19.0 || ^22.13.0 || >=24",
+    "npm": ">=11.0.0"
   }
 }
