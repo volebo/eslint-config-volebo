@@ -16,6 +16,7 @@
 [![npm version](https://img.shields.io/npm/v/eslint-config-volebo.svg)](https://www.npmjs.com/package/eslint-config-volebo)
 [![Build Status](https://gitlab.com/volebo/eslint-config-volebo/badges/master/pipeline.svg?ignore_skipped=true)](https://gitlab.com/volebo/eslint-config-volebo)
 [![npm downloads](https://img.shields.io/npm/dm/eslint-config-volebo.svg)](https://www.npmjs.com/package/eslint-config-volebo)
+[![Socket Badge](https://badge.socket.dev/npm/package/eslint-config-volebo/latest)](https://socket.dev/npm/package/eslint-config-volebo/overview)
 [![Known Vulnerabilities](https://snyk.io/test/gitlab/volebo/eslint-config-volebo/badge.svg)](https://snyk.io/test/gitlab/volebo/eslint-config-volebo)
 [![Package Quality](https://packagequality.com/shield/eslint-config-volebo.svg)](https://packagequality.com/#?package=eslint-config-volebo)
 
